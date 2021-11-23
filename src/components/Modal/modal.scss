@@ -1,0 +1,52 @@
+@use "../../assets/scss/"as *;
+
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    background-color: rgba($color: #111, $alpha: 0.4);
+    opacity: 0;
+    visibility: hidden;
+
+    &.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &__content {
+        padding: 2rem 0 0 0;
+        background-color: #292828;
+        border-radius: 4px;
+        width: 60%;
+        opacity: 0;
+        transform: translateY(-250px);
+        transition: transform 0.6s ease, opacity 0.6s ease;
+        position: relative;
+
+        &_close {
+            position: absolute;
+            right: 6px;
+            top: 6px;
+            font-size: 16px;
+            cursor: pointer;
+
+            &:hover {
+                color: #eb4545;
+            }
+        }
+    }
+
+    &.active &__content {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+
+}

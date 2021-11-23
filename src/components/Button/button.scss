@@ -1,0 +1,114 @@
+@use "../../assets/scss/"as *;
+
+.button {
+    background-color: $primary-color;
+    border-radius: 5px;
+    border: none;
+    color: $secondary-color;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+
+.default {
+    background-color: $primary-color;
+    border: 1px solid $primary-color;
+
+    &:hover {
+        background-color: #158cfa;
+        border: 1px solid #158cfa;
+    }
+}
+
+.icon_small {
+    font-size: 10px;
+    padding: 6px 8px;
+    display: flex;
+    gap: 10px;
+    background-color: rgba(255, 55, 55, 0.8);
+    border: 1px solid rgba(255, 55, 55, 0.8);
+
+    &:hover {
+        background-color: rgba($color: #ff4d4d, $alpha: 0.8);
+
+    }
+
+}
+
+.icon_small_transparent {
+    font-size: 8px;
+    padding: 6px 6px;
+    display: flex;
+    gap: 10px;
+    background-color: transparent;
+
+    &:hover {
+        background-color: rgba($color: #474747, $alpha: 0.6);
+    }
+
+}
+
+.icon {
+    display: flex;
+    gap: 10px;
+    border: 1px solid $primary-color;
+
+    &:hover {
+        background-color: #158cfa;
+        border: 1px solid #158cfa;
+    }
+}
+
+
+.secondary_default {
+    background-color: $secondary-color;
+    color: #111111;
+    border: 1px solid $secondary-color;
+
+    &:hover {
+        background-color: rgb(199, 199, 199);
+        border: 1px solid rgb(199, 199, 199);
+    }
+}
+
+.secondary_icon {
+    display: flex;
+    gap: 10px;
+    color: #111111;
+    background-color: $secondary-color;
+    border: 1px solid $secondary-color;
+
+    &:hover {
+        background-color: rgb(199, 199, 199);
+        border: 1px solid rgb(199, 199, 199);
+    }
+}
+
+.outline_default {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 1);
+
+    &:hover {
+        background-color: rgb(199, 199, 199);
+        color: #111;
+    }
+
+}
+
+.outline_icon {
+    display: flex;
+    gap: 10px;
+    border: 1px solid rgba(255, 255, 255, 1);
+    background-color: transparent;
+
+    &:hover {
+        background-color: rgb(199, 199, 199);
+        color: #111;
+    }
+}

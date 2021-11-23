@@ -1,0 +1,138 @@
+@use "../../assets/scss/"as *;
+
+.header {
+    &__disney {
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        font-size: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        transition: 0.8s all ease;
+        background-color: transparent;
+
+        &.shrink {
+            background-color: rgba(10, 17, 26, 0.9);
+        }
+    }
+
+    &__container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 20px 35px;
+        margin-right: auto;
+        margin-left: auto;
+        z-index: 1;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        justify-content: space-between;
+    }
+
+    &__logo_link {
+        justify-content: flex-start;
+        gap: 24px;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    &__profile_link {
+        justify-content: flex-end;
+        height: 50px;
+        gap: 16px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    &__logo {
+        color: $secondary-color;
+        justify-self: flex-start;
+        cursor: pointer;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    &__logo-profile {
+        height: 48px;
+        width: 48px;
+        overflow: hidden;
+        cursor: pointer;
+        display: flex;
+        justify-self: center;
+        align-items: center;
+        text-decoration: none;
+        background-color: $secondary-color;
+        padding: 10px;
+        border-radius: 45%;
+    }
+
+    &__menu {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        text-align: center;
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        gap: 8px;
+        padding: 0 16px;
+    }
+
+    &__item-link {
+        color: $secondary-color;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        font-weight: 500;
+        height: 100%;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+
+        &.active {
+            color: #a1a1a1;
+
+            &:hover {
+                color: $secondary-color;
+            }
+        }
+
+        &:hover {
+            color: #a1a1a1;
+        }
+    }
+
+}
+
+.logo {
+    &__img {
+        height: 35px;
+        transition: 0.3s all ease;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    &__img-profile {
+        width: 100%;
+        transition: 0.3s all ease;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}

@@ -1,0 +1,29 @@
+@use "../../assets/scss/"as *;
+
+
+.container {
+    margin: auto;
+    padding: 20px 35px;
+    width: 100%;
+
+    &_movie {
+        margin: auto;
+        padding: 20px 35px;
+        width: 100%;
+        gap: 5px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.card_list_movie {
+    display: flex;
+    flex-direction: column;
+
+    .judul_view_more {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: -18px;
+    }
+}
