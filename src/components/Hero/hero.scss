@@ -134,7 +134,7 @@
 
             &_item__content {
                 display: flex;
-                background: linear-gradient(rgb(247, 247, 247) 0%, rgb(148, 148, 148) 100%);
+                background: rgb(255, 255, 255, 0.4);
                 border-radius: 8px;
                 justify-content: center;
                 align-items: center;
@@ -148,7 +148,7 @@
                 display: inline-block;
                 font-size: 12px;
                 font-weight: 500;
-                color: rgb(34, 34, 34);
+                color: #000;
                 padding-right: 14px;
                 padding-left: 14px;
 
@@ -156,7 +156,7 @@
                     display: inline;
                     font-size: 13px;
                     margin-left: 3px;
-                    color: rgb(56, 133, 197);
+                    color: #000;
                 }
 
             }
@@ -208,4 +208,8 @@
         }
     }
 
+}
+
+.modal__content {
+    margin: auto;
 }

@@ -41,6 +41,7 @@ const Header = () => {
                             <div className="header__item">
                                 <FaHome />
                                 <NavLink
+                                    exact={true}
                                     to="/"
                                     activeClassName="active"
                                     className="header__item-link"

@@ -26,6 +26,25 @@ const Movie = (props) => {
             } else {
                 response = await tmdbApi.similar(props.category, props.id);
             }
+
+            let currentIndex = response.results.length,
+                randomIndex;
+
+            while (currentIndex !== 0) {
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+
+                // And swap it with the current element.
+                [
+                    response.results[currentIndex],
+                    response.results[randomIndex],
+                ] = [
+                    response.results[randomIndex],
+                    response.results[currentIndex],
+                ];
+            }
+
             setItems(response.results);
         };
         getList();
@@ -117,8 +136,28 @@ export const DiscoverMovieTV = (props) => {
             } else {
                 response = await tmdbApi.similar(props.category, props.id);
             }
-            setItems(response.results);
+            // setItems(response.results);
+
+            let currentIndex = response.results.length,
+                randomIndex;
+
+            while (currentIndex !== 0) {
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+
+                // And swap it with the current element.
+                [
+                    response.results[currentIndex],
+                    response.results[randomIndex],
+                ] = [
+                    response.results[randomIndex],
+                    response.results[currentIndex],
+                ];
+            }
+
             // console.log(response);
+            setItems(response.results);
         };
         getList();
     }, [props.type, props.category, props.id, props.params]);

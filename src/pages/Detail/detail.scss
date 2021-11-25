@@ -1,0 +1,281 @@
+@use "../../assets/scss/"as *;
+
+.detail_screen {
+    margin-top: -90px;
+}
+
+.screen_item {
+    width: 100%;
+    height: 1000px;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba($color: #000000, $alpha: 0.6);
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 400px;
+        background-image: linear-gradient(to top, $background-color, rgba(#000, 0));
+    }
+
+    &__content {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    &__bungkus {
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+        max-height: 100%;
+    }
+
+    &_poster {
+        max-width: 320px;
+        border-radius: 10px;
+        overflow: hidden;
+        cursor: pointer;
+        display: flex;
+        justify-self: center;
+        align-items: center;
+        text-decoration: none;
+        z-index: 1;
+
+        img {
+            border-radius: 5px;
+        }
+    }
+
+    &_info {
+        width: 640px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        justify-content: space-between;
+        z-index: 1;
+
+        .btns {
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: row;
+            gap: 20px;
+            z-index: 1;
+        }
+    }
+
+    &_info-bungkus {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+
+        .cast_list {
+            .swiper-slide {
+                width: 45%;
+            }
+        }
+
+        .card_list_movie {
+            gap: 30px;
+            display: flex;
+            flex-direction: column;
+
+            .cast {
+                font-size: 14px;
+                font-weight: 600;
+                color: #fff;
+            }
+        }
+
+        .card_movie {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba($color: $background-color, $alpha: 0.7);
+            border-radius: 5px;
+        }
+
+        .overview {
+            font-size: 16px;
+            line-height: 30px;
+            font-weight: 400;
+            text-align: justify;
+            width: 100%;
+        }
+
+        .title {
+            font-size: 45px;
+            z-index: 2;
+        }
+
+        .images_title {
+            z-index: 0;
+            max-width: 650px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-height: 240px;
+
+            img {
+                height: 100%;
+            }
+        }
+
+        .genre {
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            gap: 20px;
+            justify-content: space-between;
+
+
+            &_item__content {
+                display: flex;
+                background: rgb(255, 255, 255, 0.4);
+                border-radius: 8px;
+                justify-content: center;
+                align-items: center;
+                height: 30px;
+                color: rgb(34, 34, 34);
+                font-size: 14px;
+                font-weight: 500;
+            }
+
+            &_item__content_p {
+                display: inline-block;
+                font-size: 12px;
+                font-weight: 500;
+                color: #000;
+                padding-right: 14px;
+                padding-left: 14px;
+
+                &_text {
+                    display: inline;
+                    font-size: 13px;
+                    margin-left: 3px;
+                    color: #000;
+                }
+
+            }
+        }
+
+        .genre_item {
+            display: grid;
+            grid-template-columns: repeat(6, auto);
+            gap: 10px;
+            justify-content: flex-start;
+            align-items: center;
+
+            .year {
+                font-size: 14px;
+            }
+
+            &_item__content {
+                display: flex;
+                background: rgba($color: $background-color, $alpha: 0.7);
+                border-radius: 8px;
+                gap: 6px;
+                justify-content: center;
+                align-items: center;
+                height: 30px;
+                color: #fff;
+                font-size: 14px;
+                font-weight: 600;
+                padding: 8px;
+                text-transform: uppercase;
+            }
+
+            &_item__content_p {
+                display: inline-block;
+                font-size: 12px;
+                font-weight: 600;
+                color: #fff;
+                padding-right: 14px;
+                padding-left: 14px;
+
+                &_text {
+                    display: inline;
+                    font-size: 13px;
+                    margin-left: 3px;
+                    color: #000;
+                }
+            }
+        }
+
+        .genre_list {
+            display: grid;
+            grid-template-columns: repeat(5, auto);
+            gap: 10px;
+            justify-content: flex-start;
+            align-items: center;
+
+            .year {
+                font-size: 14px;
+            }
+
+            .text_genres {
+                font-size: 12px;
+                font-weight: 600;
+                color: rgb(206, 206, 206);
+            }
+
+            &_item__content {
+                display: flex;
+                background: rgba($color: $background-color, $alpha: 0.7);
+                border-radius: 8px;
+                gap: 6px;
+                justify-content: center;
+                align-items: center;
+                height: 30px;
+                color: #fff;
+                font-size: 14px;
+                font-weight: 600;
+                padding: 8px;
+            }
+
+            &_item__content_p {
+                display: inline-block;
+                font-size: 12px;
+                font-weight: 600;
+                color: #fff;
+                padding-right: 14px;
+                padding-left: 14px;
+
+                &_text {
+                    display: inline;
+                    font-size: 13px;
+                    margin-left: 3px;
+                    color: #000;
+                }
+            }
+        }
+
+        .title,
+        .overview,
+        .genre,
+        .images_title {
+            opacity: 1;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+    }
+
+}
+
+.modal__content {
+    margin: auto;
+}

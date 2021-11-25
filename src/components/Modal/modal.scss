@@ -29,6 +29,9 @@
         transform: translateY(-250px);
         transition: transform 0.6s ease, opacity 0.6s ease;
         position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         &_close {
             position: absolute;

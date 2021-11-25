@@ -85,10 +85,10 @@ const MovieCard = (props) => {
                                         {item.overview}
                                     </span>
                                     <ButtonIcon className="icon_small_transparent">
-                                        <div href="/movie">View More</div>
+                                        Watch Trailer
                                     </ButtonIcon>
                                     <ButtonIcon className="icon_small_transparent">
-                                        <div href="/movie">View More</div>
+                                        Add to Watchlist
                                     </ButtonIcon>
                                 </div>
                             </div>

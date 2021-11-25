@@ -43,7 +43,6 @@ const tmdbApi = {
         const url = movieType[type] + "/tv";
         return axiosClient.get(url, params);
     },
-
     getDisneyList: (params) => {
         const url = "discover/tv/";
         return axiosClient.get(url, params);

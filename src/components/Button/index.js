@@ -26,6 +26,17 @@ export const ButtonIcon = (props) => {
     );
 };
 
+export const ButtonIconLain = (props) => {
+    return (
+        <div
+            className={`button ${props.className}`}
+            onClick={props.onClick ? () => props.onClick() : null}
+        >
+            {props.children}
+        </div>
+    );
+};
+
 export const ButtonIconView = (props) => {
     return (
         <div
