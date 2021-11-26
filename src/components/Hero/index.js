@@ -168,6 +168,7 @@ const HeroSlideItem = (props) => {
                 <div className="hero__slide-item__bungkus">
                     <div className="hero__slide-item_poster">
                         <img
+                            style={{ borderRadius: "5px" }}
                             alt="poster_path"
                             src={apiConfig.w500Image(item.poster_path)}
                         />

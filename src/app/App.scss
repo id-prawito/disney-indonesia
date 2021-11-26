@@ -47,6 +47,15 @@ img {
     display: flex;
     flex-direction: column;
   }
+
+  &_castnya {
+    margin: auto;
+    padding: 20px 35px;
+    width: 340px;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .coba {
@@ -56,4 +65,8 @@ img {
   gap: 20px;
   margin: auto;
   height: 100vh;
+}
+
+.container_castnya_bisa {
+  max-width: 100%;
 }

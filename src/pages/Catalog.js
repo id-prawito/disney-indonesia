@@ -8,8 +8,27 @@ import Hero from "../components/Hero";
 
 const Catalog = () => {
     const { category } = useParams();
+    return (
+        <>
+            {category === cate.movie ? (
+                <MovieGrid />
+            ) : category === cate.tv ? (
+                <TvGrid />
+            ) : category === "original" ? (
+                <Original />
+            ) : (
+                "Not Found"
+            )}
+        </>
+    );
+};
 
-    return <>{category === cate.movie ? <MovieGrid /> : <TvGrid />}</>;
+const Original = () => {
+    return (
+        <div>
+            <h1>Hallo Original</h1>
+        </div>
+    );
 };
 
 const MovieGrid = () => {
@@ -65,7 +84,6 @@ const MovieGrid = () => {
                         type={movieType.discover}
                     />
                 </div>
-
                 <div className="card_list_movie">
                     <div className="judul_view_more">
                         <h3>Sci-Fi Movies</h3>

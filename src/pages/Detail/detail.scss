@@ -43,6 +43,7 @@
         display: flex;
         flex-direction: row;
         gap: 40px;
+        width: 640px;
         max-height: 100%;
     }
 
@@ -63,7 +64,7 @@
     }
 
     &_info {
-        width: 640px;
+        width: 100%;
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -84,17 +85,16 @@
         flex-direction: column;
         gap: 20px;
 
-
-        .cast_list {
-            .swiper-slide {
-                width: 45%;
-            }
-        }
-
         .card_list_movie {
             gap: 30px;
             display: flex;
             flex-direction: column;
+
+            .cast_list {
+                .swiper-slide {
+                    width: 45%;
+                }
+            }
 
             .cast {
                 font-size: 14px;
@@ -182,7 +182,7 @@
             align-items: center;
 
             .year {
-                font-size: 14px;
+                font-size: 12px;
             }
 
             &_item__content {
@@ -278,4 +278,249 @@
 
 .modal__content {
     margin: auto;
+}
+
+.casts {
+    display: grid;
+    // grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 10px;
+
+    &__item {
+
+        &__not_found {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        &__img {
+            padding-top: 160px;
+            background-size: cover;
+            margin-bottom: 0.5rem;
+        }
+
+        &__name {
+            font-size: 0.8rem;
+        }
+    }
+}
+
+
+.container_ini {
+    margin: auto;
+    width: 100%;
+
+    &_movie {
+        margin: auto;
+        width: 100%;
+        gap: 5px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.container_cast {
+    margin: auto;
+    width: 100%;
+    grid-gap: 5px;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+
+    .card_list_movie {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.cast_list {
+
+    .swiper-wrapper {
+        width: 320px;
+    }
+
+    .swiper-slide {
+        width: 15%;
+    }
+}
+
+
+.cast__movie {
+    position: relative;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 5px;
+    margin-bottom: 1.2rem;
+    margin-top: 1.2rem;
+    height: 40%;
+    transition: 0.5s ease-in-out;
+
+    &:hover {
+        transform: scale(1.23);
+        z-index: 4;
+        transition: .5s ease-in-out;
+    }
+
+    img {
+        border-radius: 5px;
+        width: 120px;
+    }
+}
+
+.tambahan_cast {
+    &:hover {
+        transform: scale3d(1.23, 1.23, 1) translate3d(11%, 0, 0) perspective(500px);
+        z-index: 4;
+        transition: .5s ease-in-out;
+    }
+}
+
+.tambahan_cast_kanan {
+    &:hover {
+        transform: scale3d(1.23, 1.23, 1) translate3d(-12%, 0, 0) perspective(500px);
+        z-index: 4;
+        transition: .5s ease-in-out;
+    }
+}
+
+.text_cats {
+    font-size: 9px;
+    color: rgb(206, 206, 206);
+    text-align: center;
+    margin: auto;
+    font-weight: 500;
+}
+
+.video {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.video_grid {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 20px;
+    row-gap: 40px;
+}
+
+
+.text_video {
+    font-size: 18px;
+    font-weight: 600;
+    width: 500px;
+    height: 30px;
+}
+
+.jumlah_season {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+}
+
+.text_season {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.card_episode {
+    background-color: #fff;
+    height: 120px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.coba_episode {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container_episode {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.card {
+    height: 100%;
+}
+
+.episode_grid {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 20px;
+}
+
+.grid_card {
+    border-radius: 5px;
+    background-color: rgba($color: #000000, $alpha: 0.4);
+    display: grid;
+    flex-direction: row;
+    grid-template-columns: 40% 60%;
+    transition: .3s ease-in-out;
+
+    &:hover {
+        background-color: rgba($color: #000000, $alpha: 0.2);
+        cursor: pointer;
+        transition: .3s ease-in-out;
+        z-index: 4;
+
+        .gambarnya {
+            transform: scale(1.03);
+            transition: .3s ease-in-out;
+        }
+    }
+
+}
+
+.gambarnya {
+    height: 100%;
+    border-radius: 5px;
+    position: relative;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        border-radius: 5px;
+        height: 100%;
+        position: relative;
+        z-index: -1;
+
+    }
+}
+
+.detailss {
+    &:hover {
+        opacity: 1;
+        transition: .3s ease-in;
+    }
+}
+
+.keterangannya {
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.text_judul_episode {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.text_keterangan {
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
 }

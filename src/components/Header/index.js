@@ -70,7 +70,10 @@ const Header = () => {
                             </div>
                             <div className="header__item">
                                 <FaStar />
-                                <NavLink to="/4" className="header__item-link">
+                                <NavLink
+                                    to="/original"
+                                    className="header__item-link"
+                                >
                                     Originals
                                 </NavLink>
                             </div>
