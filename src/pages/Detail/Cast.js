@@ -25,7 +25,7 @@ const Cast = (props) => {
             <div className="cast_list">
                 <Swiper
                     modules={[Autoplay]}
-                    autoplay={{ delay: 1000 }}
+                    autoplay={{ delay: 5000 }}
                     grabCursor={true}
                     spaceBetween={14}
                     slidesPerView={8}

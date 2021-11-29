@@ -1,14 +1,13 @@
 import React, { useRef, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
-import logoNav from "../../assets/images/logoNav.svg";
-import logoProfile from "../../assets/images/pikachu.png";
 import { FaHome, FaPlus, FaSearch, FaStar } from "react-icons/fa";
+import { Link, NavLink } from "react-router-dom";
+import logoProfile from "../../assets/images/pikachu.png";
 import { MdMovie, MdVideoLibrary } from "react-icons/md";
+import logoNav from "../../assets/images/logoNav.svg";
 import "./header.scss";
 
 const Header = () => {
     const headerRef = useRef(null);
-
     useEffect(() => {
         const shrinkHeader = () => {
             if (

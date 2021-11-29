@@ -1,6 +1,6 @@
 import React from "react";
 import Hero from "../components/Hero";
-import CardDisney from "../components/Card";
+import CardDisney from "../components/Disney";
 import { category } from "../services/tmdbApi";
 import ListHome from "../components/ListCard";
 

@@ -166,3 +166,22 @@
         }
     }
 }
+
+.movie-card-not_found {
+    position: relative;
+    background: #192133;
+    overflow: hidden;
+    max-width: 210px;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 4px;
+    margin-bottom: 2.3rem;
+    margin-top: 2.3rem;
+    transition: .5s ease-in-out;
+    height: 300px;
+    display: flex;
+    text-transform: capitalize;
+    align-items: center;
+    justify-content: center;
+}

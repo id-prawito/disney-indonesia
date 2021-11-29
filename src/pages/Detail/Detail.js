@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import apiConfig from "../../services/apiConfig";
 import { Link } from "react-router-dom";
 import tmdbApi from "../../services/tmdbApi";
-import Movie, { MovieRecomendations } from "../../components/Movie";
+import { MovieRecomendations, MovieView } from "../../components/Movie";
 import Modal, { ModalContent } from "../../components/Modal";
 import { FaLink } from "react-icons/fa";
 import VideoList from "./VideoList";
@@ -14,11 +14,7 @@ import {
     FaStar,
     FaRegClosedCaptioning,
 } from "react-icons/fa";
-import {
-    ButtonIcon,
-    ButtonIconLain,
-    ButtonIconView,
-} from "../../components/Button";
+import { ButtonIcon, ButtonIconLain } from "../../components/Button";
 import Episode from "./Episode";
 
 const DetailScreen = () => {
@@ -49,9 +45,12 @@ const DetailScreen = () => {
             setloading(true);
             try {
                 const response = await tmdbApi.getImages(category, id);
-                for (let i = 0; i < response.logos.length - 1; i++) {
+                for (let i = 0; i <= response.logos.length; i++) {
                     if (
+                        (response.logos[i].iso_639_1 !== null &&
+                            response.logos[i].iso_639_1 === "en") ||
                         response.logos[i].iso_639_1 === "en" ||
+                        response.logos[i].iso_639_1 !== null ||
                         response.logos[i].iso_639_1 === null ||
                         response.logos[i].iso_639_1 === undefined
                     ) {
@@ -59,11 +58,12 @@ const DetailScreen = () => {
                             logosnya: response.logos[i].file_path,
                         };
                         setMovieImages(Objectnya);
+                        console.log(Objectnya);
                         break;
                     }
                 }
             } catch {
-                console.log("error");
+                console.log("error gambarnya gaes");
             }
             setloading(false);
         };
@@ -182,22 +182,24 @@ const DetailScreen = () => {
                                                     item.genres
                                                         .slice(0, 5)
                                                         .map((genre, i) => (
-                                                            <span
+                                                            <Link
                                                                 key={i}
-                                                                className="text_genres"
+                                                                to={`/${category}/genres/${genre.id}`}
                                                             >
-                                                                {genre.name},
-                                                            </span>
+                                                                <span className="text_genres">
+                                                                    {`${genre.name}, `}
+                                                                </span>
+                                                            </Link>
                                                         ))}
                                             </div>
                                             <div className="btns">
                                                 <ButtonIcon
                                                     className="secondary_icon"
-                                                    // onClick={() =>
-                                                    //     history.push(
-                                                    //         "/movie" + item.id
-                                                    //     )
-                                                    // }
+                                                    onClick={() =>
+                                                        alert(
+                                                            "Sorry, video not found, because this is just data form TMBD.\nYou can watch this video from Netflix or Disney+. :)"
+                                                        )
+                                                    }
                                                 >
                                                     Watch Now
                                                 </ButtonIcon>
@@ -207,7 +209,6 @@ const DetailScreen = () => {
                                                 >
                                                     Watch Trailer
                                                 </ButtonIcon>
-
                                                 {item.homepage === "" ? (
                                                     <></>
                                                 ) : (
@@ -245,12 +246,7 @@ const DetailScreen = () => {
                     <div className="container_movie">
                         <div className="card_list_movie">
                             {category === "movie" ? (
-                                <Movie
-                                    category={category}
-                                    type="similar"
-                                    id={item.id}
-                                    params={{}}
-                                />
+                                <></>
                             ) : (
                                 <div className="coba_episode">
                                     <h3>TV Season and Episode</h3>
@@ -272,37 +268,24 @@ const DetailScreen = () => {
                     </div>
                     <div className="container_movie">
                         <div className="card_list_movie">
-                            <div className="judul_view_more">
-                                <h3>Similars</h3>
-                                <Link to="/movie">
-                                    <ButtonIconView className="icon_small">
-                                        View More
-                                    </ButtonIconView>
-                                </Link>
-                            </div>
-                            <Movie
-                                category={category}
+                            <MovieView
                                 type="similar"
-                                id={item.id}
+                                judul="Similars"
                                 params={{}}
+                                category={category}
+                                id={item.id}
                             />
                         </div>
                     </div>
+
                     <div className="container_movie">
                         <div className="card_list_movie">
-                            <div className="judul_view_more">
-                                <h3>Recomendations</h3>
-                                <Link to="/movie">
-                                    <ButtonIconView className="icon_small">
-                                        View More
-                                    </ButtonIconView>
-                                </Link>
-                            </div>
                             <MovieRecomendations
-                                category={category}
                                 type="recomendations"
-                                id={item.id}
+                                judul="Recomendations"
                                 params={{}}
+                                category={category}
+                                id={item.id}
                             />
                         </div>
                     </div>

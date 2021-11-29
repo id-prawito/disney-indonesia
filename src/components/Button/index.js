@@ -1,6 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { FaPlay, FaAngleRight } from "react-icons/fa";
+import PropTypes from "prop-types";
 import "./button.scss";
 
 const Button = (props) => {

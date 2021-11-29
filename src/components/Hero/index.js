@@ -1,19 +1,18 @@
 import React, { useEffect, useState, useRef } from "react";
-import tmdbApi, { category, tvType, movieType } from "../../services/tmdbApi";
-import apiConfig from "../../services/apiConfig";
-import Modal, { ModalContent } from "../../components/Modal";
-import SwiperCore, { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useHistory } from "react-router";
+import tmdbApi, { category, tvType, movieType } from "../../services/tmdbApi";
+import { FaCalendarDay, FaStar, FaRegClosedCaptioning } from "react-icons/fa";
+import Modal, { ModalContent } from "../../components/Modal";
+import image_not from "../../assets/images/not_found_ava.png";
 import { ButtonIcon } from "../../components/Button";
-import nothing from "../../assets/images/nothing.svg";
+import apiConfig from "../../services/apiConfig";
+import SwiperCore, { Autoplay } from "swiper";
+import { useHistory } from "react-router";
 import "./hero.scss";
+
 const Hero = (props) => {
-    SwiperCore.use([Autoplay]);
-
-    // console.log(props.category);
-
     const [movieItems, setMovieItems] = useState([]);
+    SwiperCore.use([Autoplay]);
 
     useEffect(() => {
         const getMovies = async () => {
@@ -35,12 +34,10 @@ const Hero = (props) => {
 
                 let currentIndex = response.results.length,
                     randomIndex;
-
                 while (currentIndex !== 0) {
                     // Pick a remaining element...
                     randomIndex = Math.floor(Math.random() * currentIndex);
                     currentIndex--;
-
                     // And swap it with the current element.
                     [
                         response.results[currentIndex],
@@ -51,7 +48,6 @@ const Hero = (props) => {
                     ];
                 }
                 setMovieItems(response.results.slice(0, 4));
-                // console.log(response);
             } catch {
                 console.log("error");
             }
@@ -66,7 +62,7 @@ const Hero = (props) => {
                 grabCursor={true}
                 spaceBetween={0}
                 slidesPerView={1}
-                // autoplay={{ delay: 5000 }}
+                autoplay={{ delay: 8000 }}
             >
                 {movieItems.map((item, i) => (
                     <SwiperSlide key={i}>
@@ -95,7 +91,6 @@ const Hero = (props) => {
 
 const HeroSlideItem = (props) => {
     let history = useHistory();
-
     const item = props.item;
     const background = apiConfig.originalImage(
         item.backdrop_path ? item.backdrop_path : item.poster_path
@@ -103,7 +98,6 @@ const HeroSlideItem = (props) => {
 
     const setModalActive = async () => {
         const modal = document.querySelector(`#modal_${item.id}`);
-
         const videos = await tmdbApi.getVideos(category.movie, item.id);
 
         if (videos.results.length > 0) {
@@ -115,7 +109,6 @@ const HeroSlideItem = (props) => {
         } else {
             modal.querySelector(".modal__content").innerHTML = "No trailer";
         }
-
         modal.classList.toggle("active");
     };
 
@@ -129,10 +122,7 @@ const HeroSlideItem = (props) => {
                     category.movie || category.tv,
                     item.id
                 );
-
-                // console.log(response);
-
-                for (let i = 0; i < response.logos.length - 1; i++) {
+                for (let i = 0; i <= response.logos.length; i++) {
                     if (
                         response.logos[i].iso_639_1 === "en" ||
                         response.logos[i].iso_639_1 === null ||
@@ -173,44 +163,38 @@ const HeroSlideItem = (props) => {
                             src={apiConfig.w500Image(item.poster_path)}
                         />
                     </div>
-
                     <div className="hero__slide-item_info">
                         <div className="hero__slide-item_info-bungkus">
                             <div className="images_title">
                                 {isLoading ? (
-                                    <h1>Loading</h1>
+                                    <div className="text_loading">
+                                        Loading...
+                                    </div>
+                                ) : movieImages.logosnya === undefined ? (
+                                    <img alt="not_available" src={image_not} />
                                 ) : (
-                                    <img
-                                        alt="poster_path"
-                                        src={imagesLogo || nothing}
-                                    />
+                                    <img alt="poster_path" src={imagesLogo} />
                                 )}
                             </div>
-                            <div className="genre">
-                                <div className="genre_item__content">
-                                    <h2 className="genre_item__content_p">
-                                        Release Data :
-                                        <p className="genre_item__content_p_text">
-                                            {item.release_date ||
-                                                item.first_air_date}
-                                        </p>
-                                    </h2>
+                            <div className="genre_item">
+                                <div className="genre_item_item__content">
+                                    <FaStar fontSize={14} />
+                                    <div className="text_item">
+                                        {item.vote_average}
+                                    </div>
                                 </div>
-                                <div className="genre_item__content">
-                                    <h2 className="genre_item__content_p">
-                                        Popularity :
-                                        <p className="genre_item__content_p_text">
-                                            {item.popularity}
-                                        </p>
-                                    </h2>
+                                <div className="genre_item_item__content">
+                                    <FaRegClosedCaptioning fontSize={16} />
+                                    <div className="text_item">
+                                        {item.original_language}
+                                    </div>
                                 </div>
-                                <div className="genre_item__content">
-                                    <h2 className="genre_item__content_p">
-                                        Vote Average :
-                                        <p className="genre_item__content_p_text">
-                                            {item.vote_average}
-                                        </p>
-                                    </h2>
+                                <div className="genre_item_item__content">
+                                    <FaCalendarDay />
+                                    <div className="year">
+                                        {item.release_date ||
+                                            item.first_air_date}
+                                    </div>
                                 </div>
                             </div>
                             <div className="overview">{item.overview}</div>
@@ -218,7 +202,9 @@ const HeroSlideItem = (props) => {
                         <div className="btns">
                             <ButtonIcon
                                 className="secondary_icon"
-                                onClick={() => history.push("/movie" + item.id)}
+                                onClick={() =>
+                                    history.push("/movie/" + item.id)
+                                }
                             >
                                 Watch Now
                             </ButtonIcon>
@@ -243,10 +229,8 @@ const HeroSlideItemTV = (props) => {
     const background = apiConfig.originalImage(
         item.backdrop_path ? item.backdrop_path : item.poster_path
     );
-
     const setModalActive = async () => {
         const modal = document.querySelector(`#modal_${item.id}`);
-
         const videos = await tmdbApi.getVideos(category.tv, item.id);
 
         if (videos.results.length > 0) {
@@ -259,18 +243,17 @@ const HeroSlideItemTV = (props) => {
             modal.querySelector(".modal__content > iframe").innerHTML =
                 "No trailer";
         }
-
         modal.classList.toggle("active");
     };
 
     const [movieImages, setMovieImages] = useState([]);
     const [isLoading, setloading] = useState(true);
+
     useEffect(() => {
         const getImages = async () => {
             setloading(true);
             try {
                 const response = await tmdbApi.getImages(category.tv, item.id);
-
                 for (let i = 0; i < response.logos.length - 1; i++) {
                     try {
                         if (
@@ -284,7 +267,6 @@ const HeroSlideItemTV = (props) => {
                             setMovieImages(Objectnya);
                             break;
                         }
-                        // console.log(response.logos);
                     } catch {
                         console.log("error");
                     }
@@ -316,41 +298,37 @@ const HeroSlideItemTV = (props) => {
                             src={apiConfig.w500Image(item.poster_path)}
                         />
                     </div>
-
                     <div className="hero__slide-item_info">
                         <div className="hero__slide-item_info-bungkus">
                             <div className="images_title">
                                 {isLoading ? (
-                                    <h1>Loading</h1>
+                                    <div className="text_loading">
+                                        Loading...
+                                    </div>
+                                ) : movieImages.logosnya === undefined ? (
+                                    <img alt="not_available" src={image_not} />
                                 ) : (
                                     <img alt="poster_path" src={imagesLogo} />
                                 )}
                             </div>
-                            <div className="genre">
-                                <div className="genre_item__content">
-                                    <h2 className="genre_item__content_p">
-                                        Release Data :
-                                        <p className="genre_item__content_p_text">
-                                            {item.release_date ||
-                                                item.first_air_date}
-                                        </p>
-                                    </h2>
+                            <div className="genre_item">
+                                <div className="genre_item_item__content">
+                                    <FaStar fontSize={14} />
+                                    <div className="text_item">
+                                        {item.vote_average}
+                                    </div>
                                 </div>
-                                <div className="genre_item__content">
-                                    <h2 className="genre_item__content_p">
-                                        Popularity :
-                                        <p className="genre_item__content_p_text">
-                                            {item.popularity}
-                                        </p>
-                                    </h2>
+                                <div className="genre_item_item__content">
+                                    <FaRegClosedCaptioning fontSize={16} />
+                                    <div className="text_item">
+                                        {item.original_language}
+                                    </div>
                                 </div>
-                                <div className="genre_item__content">
-                                    <h2 className="genre_item__content_p">
-                                        Vote Average :
-                                        <p className="genre_item__content_p_text">
-                                            {item.vote_average}
-                                        </p>
-                                    </h2>
+                                <div className="genre_item_item__content">
+                                    <FaCalendarDay />
+                                    <div className="year">
+                                        {item.first_air_date}
+                                    </div>
                                 </div>
                             </div>
                             <div className="overview">{item.overview}</div>
@@ -358,7 +336,7 @@ const HeroSlideItemTV = (props) => {
                         <div className="btns">
                             <ButtonIcon
                                 className="secondary_icon"
-                                onClick={() => history.push("/movie" + item.id)}
+                                onClick={() => history.push("/tv/" + item.id)}
                             >
                                 Watch Now
                             </ButtonIcon>
@@ -378,9 +356,7 @@ const HeroSlideItemTV = (props) => {
 
 const TrailerModal = (props) => {
     const item = props.item;
-
     const iframeRef = useRef(null);
-
     const onClose = () => iframeRef.current.setAttribute("src", "");
 
     return (
