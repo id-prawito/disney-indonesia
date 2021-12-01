@@ -10,7 +10,9 @@ import "./movie_card.scss";
 const MovieCard = (props) => {
     const item = props.item;
     const link = "/" + category[props.category] + "/" + item.id;
-    const bg = apiConfig.w500Image(item.poster_path || item.backdrop_path);
+    const bg =
+        apiConfig.w500Image(item.poster_path || item.backdrop_path) ||
+        apiConfig.originalImage(item.poster_path || item.backdrop_path);
     const [movieImages, setMovieImages] = useState([]);
     const [isLoading, setloading] = useState(true);
 
@@ -410,7 +412,9 @@ export const MovieCardSimilar = (props) => {
 export const TvCard = (props) => {
     const item = props.item;
     const link = "/" + category[props.category] + "/" + item.id;
-    const bg = apiConfig.w500Image(item.poster_path || item.backdrop_path);
+    const bg =
+        apiConfig.w500Image(item.poster_path || item.backdrop_path) ||
+        apiConfig.originalImage(item.poster_path || item.backdrop_path);
     const [movieImagesTv, setMovieImages] = useState([]);
     const [isLoading, setloading] = useState(true);
     useEffect(() => {

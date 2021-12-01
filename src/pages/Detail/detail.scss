@@ -542,6 +542,12 @@
     gap: 10px;
 }
 
+.class_castmovie {
+    display: grid;
+    grid-template-columns: repeat(8, auto);
+    gap: 10px;
+}
+
 .movie-search {
     display: flex;
     flex-direction: row;
@@ -553,4 +559,176 @@
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 14px;
+}
+
+
+
+
+
+.castnya {
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 1000px;
+    width: 100%;
+
+    &__content {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    &__bungkus {
+        display: flex;
+        flex-direction: row;
+        max-height: 100%;
+        gap: 40px;
+    }
+
+    &__detail {
+        display: flex;
+        justify-self: center;
+        align-items: center;
+        text-decoration: none;
+        border-radius: 10px;
+        max-width: 320px;
+        overflow: hidden;
+        cursor: pointer;
+        z-index: 1;
+
+
+        img {
+            transform: scale(1);
+            transition: transform 0.7s ease;
+        }
+
+    }
+
+    &__info {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        width: 540px;
+        z-index: 1;
+        gap: 20px;
+
+        .btns {
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: row;
+            z-index: 1;
+            opacity: 1;
+            gap: 20px;
+
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            &_nama {
+                font-size: 20px;
+                font-weight: 600;
+            }
+
+            .genre_item {
+                display: grid;
+                grid-template-columns: repeat(4, auto);
+                justify-content: flex-start;
+                align-items: center;
+                gap: 10px;
+
+                &_item__content {
+                    display: flex;
+                    justify-content: center;
+                    background: rgb(56 57 60 / 90%);
+                    text-transform: uppercase;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: #fff;
+                    height: 30px;
+                    padding: 8px;
+                    gap: 6px;
+
+                    .text_item {
+                        font-size: 12px;
+                        text-transform: capitalize;
+                    }
+
+                    .year {
+                        font-size: 12px;
+                        font-weight: 500;
+                    }
+                }
+            }
+
+            .genre_item_media {
+                display: grid;
+                grid-template-columns: repeat(5, auto);
+                justify-content: flex-start;
+                align-items: center;
+                gap: 10px;
+
+                &_item__content {
+                    display: flex;
+                    justify-content: center;
+                    background: rgb(56 57 60 / 90%);
+                    text-transform: uppercase;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: #fff;
+                    height: 30px;
+                    padding: 8px;
+                    gap: 6px;
+
+                    &:hover {
+                        background: rgb(56 57 60 / 70%);
+                    }
+
+                    .text_item {
+                        font-size: 12px;
+                        text-transform: capitalize;
+                    }
+
+                    .year {
+                        font-size: 12px;
+                        font-weight: 500;
+                    }
+                }
+            }
+
+            .overviewnya {
+                text-align: justify;
+                line-height: 25px;
+                font-weight: 400;
+                font-size: 14px;
+                width: 100%;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 8;
+                white-space: normal;
+
+            }
+
+            .title {
+                font-size: 45px;
+                z-index: 1;
+            }
+
+            .title,
+            .overviewnya,
+            .genre_item,
+            .images_title {
+                opacity: 1;
+
+            }
+        }
+    }
 }

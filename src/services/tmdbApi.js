@@ -63,6 +63,22 @@ const tmdbApi = {
         const url = category[cate] + "/" + id;
         return axiosClient.get(url, params);
     },
+    person: (id) => {
+        const url = "/person/" + id;
+        return axiosClient.get(url, { params: {} });
+    },
+    personIDS: (id) => {
+        const url = "/person/" + id + "/external_ids";
+        return axiosClient.get(url, { params: {} });
+    },
+    personMovie: (id) => {
+        const url = "/person/" + id + "/movie_credits";
+        return axiosClient.get(url, { params: {} });
+    },
+    personTV: (id) => {
+        const url = "/person/" + id + "/tv_credits";
+        return axiosClient.get(url, { params: {} });
+    },
     credits: (cate, id) => {
         const url = category[cate] + "/" + id + "/credits";
         return axiosClient.get(url, { params: {} });

@@ -4,6 +4,7 @@ import apiConfig from "../../services/apiConfig";
 import { Link } from "react-router-dom";
 import tmdbApi from "../../services/tmdbApi";
 import { MovieRecomendations, MovieView } from "../../components/Movie";
+import image_not from "../../assets/images/not_found_ava.png";
 import Modal, { ModalContent } from "../../components/Modal";
 import { FaLink } from "react-icons/fa";
 import VideoList from "./VideoList";
@@ -112,12 +113,15 @@ const DetailScreen = () => {
                                         <div className="screen_item_info-bungkus">
                                             <div className="images_title">
                                                 {isLoading ? (
-                                                    <h1>Loading</h1>
+                                                    <div className="text_loading">
+                                                        Loading...
+                                                    </div>
                                                 ) : movieImages.logosnya ===
                                                   undefined ? (
-                                                    <h4>
-                                                        gambarnya tidak tersedia
-                                                    </h4>
+                                                    <img
+                                                        alt="not_available"
+                                                        src={image_not}
+                                                    />
                                                 ) : (
                                                     <img
                                                         alt="poster_path"

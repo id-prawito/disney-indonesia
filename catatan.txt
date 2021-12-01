@@ -10,5 +10,6 @@ Bersih-bersih codingan
 + Input  || done
 
 Fungsi View More di tiap Halaman                   || done gokilsssssss
+Fungsi Handle image not found                      || 
 Fungsi Movie Grid di Homepage Disney (marvel, dll) || 
-Fungsi Person (opsional)
+Fungsi Person (opsional)                           || done

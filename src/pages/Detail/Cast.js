@@ -4,6 +4,7 @@ import tmdbApi from "../../services/tmdbApi";
 import apiConfig from "../../services/apiConfig";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay } from "swiper";
+import { Link } from "react-router-dom";
 import "./detail.scss";
 const Cast = (props) => {
     const { category } = useParams();
@@ -19,6 +20,8 @@ const Cast = (props) => {
     }, [category, props.id]);
 
     SwiperCore.use([Autoplay]);
+
+    // console.log(casts);
 
     return (
         <>
@@ -38,12 +41,14 @@ const Cast = (props) => {
                                         Gambar tidak ada
                                     </div>
                                 ) : (
-                                    <img
-                                        src={`${apiConfig.w500Image(
-                                            item.profile_path
-                                        )}`}
-                                        alt="aa"
-                                    />
+                                    <Link to={`/${category}/person/${item.id}`}>
+                                        <img
+                                            src={`${apiConfig.w500Image(
+                                                item.profile_path
+                                            )}`}
+                                            alt="aa"
+                                        />
+                                    </Link>
                                 )}
                                 <div className="text_cats">{item.name}</div>
                             </div>
@@ -57,12 +62,14 @@ const Cast = (props) => {
                                         Gambar tidak ada
                                     </div>
                                 ) : (
-                                    <img
-                                        src={`${apiConfig.w500Image(
-                                            item.profile_path
-                                        )}`}
-                                        alt="aa"
-                                    />
+                                    <Link to={`/${category}/person/${item.id}`}>
+                                        <img
+                                            src={`${apiConfig.w500Image(
+                                                item.profile_path
+                                            )}`}
+                                            alt="aa"
+                                        />
+                                    </Link>
                                 )}
                                 <div className="text_cats">{item.name}</div>
                             </div>
@@ -76,12 +83,14 @@ const Cast = (props) => {
                                         Gambar tidak ada
                                     </div>
                                 ) : (
-                                    <img
-                                        src={`${apiConfig.w500Image(
-                                            item.profile_path
-                                        )}`}
-                                        alt="aa"
-                                    />
+                                    <Link to={`/${category}/person/${item.id}`}>
+                                        <img
+                                            src={`${apiConfig.w500Image(
+                                                item.profile_path
+                                            )}`}
+                                            alt="aa"
+                                        />
+                                    </Link>
                                 )}
                                 <div className="text_cats">{item.name}</div>
                             </div>
