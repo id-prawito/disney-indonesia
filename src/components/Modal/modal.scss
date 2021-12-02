@@ -2,18 +2,18 @@
 
 .modal {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     position: fixed;
+    background-color: rgba($color: #111, $alpha: 0.4);
+    visibility: hidden;
+    overflow: auto;
     z-index: 100;
-    top: 0;
-    left: 0;
+    opacity: 0;
     bottom: 0;
     right: 0;
-    overflow: auto;
-    background-color: rgba($color: #111, $alpha: 0.4);
-    opacity: 0;
-    visibility: hidden;
+    left: 0;
+    top: 0;
 
     &.active {
         opacity: 1;
@@ -21,24 +21,24 @@
     }
 
     &__content {
-        padding: 2rem 0 0 0;
-        background-color: #292828;
-        border-radius: 4px;
-        width: 60%;
-        opacity: 0;
-        transform: translateY(-250px);
-        transition: transform 0.6s ease, opacity 0.6s ease;
-        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: #292828;
+        padding: 2rem 0 0 0;
+        border-radius: 4px;
+        position: relative;
+        width: 60%;
+        opacity: 0;
+        transition: transform 0.6s ease, opacity 0.6s ease;
+        transform: translateY(-250px);
 
         &_close {
             position: absolute;
+            cursor: pointer;
+            font-size: 16px;
             right: 6px;
             top: 6px;
-            font-size: 16px;
-            cursor: pointer;
 
             &:hover {
                 color: #eb4545;
@@ -50,6 +50,4 @@
         opacity: 1;
         transform: translateY(0);
     }
-
-
 }

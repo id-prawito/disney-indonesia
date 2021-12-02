@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router";
-import tmdbApi from "../../services/tmdbApi";
-import apiConfig from "../../services/apiConfig";
 import { Swiper, SwiperSlide } from "swiper/react";
+import React, { useState, useEffect } from "react";
+import apiConfig from "../../services/apiConfig";
 import SwiperCore, { Autoplay } from "swiper";
+import tmdbApi from "../../services/tmdbApi";
+import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import "./detail.scss";
+
 const Cast = (props) => {
     const { category } = useParams();
-
     const [casts, setCasts] = useState([]);
 
     useEffect(() => {
@@ -21,14 +21,15 @@ const Cast = (props) => {
 
     SwiperCore.use([Autoplay]);
 
-    // console.log(casts);
-
     return (
-        <>
+        <div className="card_list_movie">
+            <div className="judul_view_more">
+                <div className="cast">Cast</div>
+            </div>
             <div className="cast_list">
                 <Swiper
-                    modules={[Autoplay]}
                     autoplay={{ delay: 5000 }}
+                    modules={[Autoplay]}
                     grabCursor={true}
                     spaceBetween={14}
                     slidesPerView={8}
@@ -98,7 +99,7 @@ const Cast = (props) => {
                     ))}
                 </Swiper>
             </div>
-        </>
+        </div>
     );
 };
 

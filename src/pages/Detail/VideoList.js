@@ -4,7 +4,6 @@ import tmdbApi from "../../services/tmdbApi";
 
 const VideoList = (props) => {
     const { category } = useParams();
-
     const [videos, setVideos] = useState([]);
 
     useEffect(() => {
@@ -15,7 +14,6 @@ const VideoList = (props) => {
         getVideos();
     }, [category, props.id]);
 
-    // console.log(videos);
     return (
         <>
             {videos.map((item, i) => (
@@ -27,7 +25,6 @@ const VideoList = (props) => {
 
 const Video = (props) => {
     const item = props.item;
-
     const iframeRef = useRef(null);
 
     useEffect(() => {
@@ -40,9 +37,9 @@ const Video = (props) => {
             <div className="text_video">{item.name}</div>
             <iframe
                 src={`https://www.youtube.com/embed/${item.key}`}
+                style={{ border: "none", borderRadius: "5px" }}
                 ref={iframeRef}
                 title="video"
-                style={{ border: "none", borderRadius: "5px" }}
                 allowFullScreen
             ></iframe>
         </div>

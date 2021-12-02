@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import apiConfig from "../../services/apiConfig";
 import tmdbApi from "../../services/tmdbApi";
-// import { SwiperSlide, Swiper } from "swiper/react";
 
 const Episode = (props) => {
     const { category } = useParams();
@@ -15,7 +14,6 @@ const Episode = (props) => {
                 const evonyaNamanya = [];
                 for (let i = 1; i <= season; i++) {
                     const res = await tmdbApi.episode(category, props.id, [i]);
-                    // console.log(res);
                     evonyaNamanya.push(res);
                 }
                 setEpisode(evonyaNamanya);
@@ -25,7 +23,7 @@ const Episode = (props) => {
         };
         getEpisode();
     }, [category, props.id, season]);
-    // console.log(episode);
+    console.log(episode);
 
     return (
         <div className="container_episode">
@@ -40,7 +38,6 @@ const Episode = (props) => {
 
 const Episodenya = (props) => {
     const itemnya = props.itemnya;
-    // console.log(itemnya);
 
     return (
         <div className="jumlah_season">

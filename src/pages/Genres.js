@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { MovieCardGrid, TvCardGrid } from "../components/MovieCard";
 import { useParams } from "react-router";
 import { ButtonIcon } from "../components/Button";
-import { MovieCardGrid, TvCardGrid } from "../components/MovieCard";
 import tmdbApi from "../services/tmdbApi";
 import "./Detail/detail.scss";
 
@@ -12,9 +12,9 @@ const Genres = () => {
 
 export const GenresMovie = () => {
     const { category, id_genres } = useParams();
+    const [totalPage, setTotalPage] = useState(0);
     const [items, setItems] = useState([]);
     const [page, setPage] = useState(1);
-    const [totalPage, setTotalPage] = useState(0);
 
     useEffect(() => {
         const getList = async () => {
@@ -29,7 +29,6 @@ export const GenresMovie = () => {
                         response = await tmdbApi.getMoviesList(popular, {
                             params,
                         });
-                        // console.log(response);
                         break;
                     default:
                         response = await tmdbApi.getTvList(popular, {
@@ -38,7 +37,6 @@ export const GenresMovie = () => {
                 }
                 setItems(response.results);
                 setTotalPage(response.total_pages);
-                // console.log(response);
             } catch {
                 console.log("error");
             }
@@ -61,7 +59,6 @@ export const GenresMovie = () => {
                     response = await tmdbApi.getMoviesList(popular, {
                         params,
                     });
-                    // console.log(response);
                     break;
                 default:
                     response = await tmdbApi.getTvList(popular, {
@@ -69,7 +66,6 @@ export const GenresMovie = () => {
                     });
             }
 
-            // const response = await tmdbApi.search(category, { params });
             setItems([...items, ...response.results]);
             setPage(page + 1);
         } catch {
@@ -77,12 +73,9 @@ export const GenresMovie = () => {
         }
     };
 
-    // console.log(items);
-
     return (
         <div className="container_movie">
             <div className="class_genres">
-                {/* <h1>Hellow {id_genres}</h1> */}
                 {items.map((item, i) => (
                     <MovieCardGrid key={i} item={item} category={category} />
                 ))}
@@ -103,9 +96,9 @@ export const GenresMovie = () => {
 
 export const GenresTV = () => {
     const { category, id_genres } = useParams();
+    const [totalPage, setTotalPage] = useState(0);
     const [items, setItems] = useState([]);
     const [page, setPage] = useState(1);
-    const [totalPage, setTotalPage] = useState(0);
 
     useEffect(() => {
         const getList = async () => {
@@ -120,7 +113,6 @@ export const GenresTV = () => {
                         response = await tmdbApi.getTvList(popular, {
                             params,
                         });
-                        // console.log(response);
                         break;
                     default:
                         response = await tmdbApi.getMoviesList(popular, {
@@ -129,7 +121,6 @@ export const GenresTV = () => {
                 }
                 setItems(response.results);
                 setTotalPage(response.total_pages);
-                // console.log(response);
             } catch {
                 console.log("error");
             }
@@ -155,7 +146,6 @@ export const GenresTV = () => {
                     response = await tmdbApi.getTvList(popular, {
                         params,
                     });
-                    // console.log(response);
                     break;
                 default:
                     response = await tmdbApi.getMoviesList(popular, {
@@ -163,15 +153,12 @@ export const GenresTV = () => {
                     });
             }
 
-            // const response = await tmdbApi.search(category, { params });
             setItems([...items, ...response.results]);
             setPage(page + 1);
         } catch {
             console.log("sorry error");
         }
     };
-
-    // console.log(items);
 
     return (
         <div className="container_movie">

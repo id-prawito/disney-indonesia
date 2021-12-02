@@ -1,5 +1,5 @@
 import React from "react";
-import { FaPlay, FaAngleRight } from "react-icons/fa";
+import { FaPlay, FaAngleRight, FaMinus, FaPlus } from "react-icons/fa";
 import PropTypes from "prop-types";
 import "./button.scss";
 
@@ -21,6 +21,30 @@ export const ButtonIcon = (props) => {
             onClick={props.onClick ? () => props.onClick() : null}
         >
             <FaPlay />
+            {props.children}
+        </div>
+    );
+};
+
+export const ButtonIconFaPlus = (props) => {
+    return (
+        <div
+            className={`button ${props.className}`}
+            onClick={props.onClick ? () => props.onClick() : null}
+        >
+            <FaPlus />
+            {props.children}
+        </div>
+    );
+};
+
+export const ButtonIconFaMinus = (props) => {
+    return (
+        <div
+            className={`button ${props.className}`}
+            onClick={props.onClick ? () => props.onClick() : null}
+        >
+            <FaMinus />
             {props.children}
         </div>
     );

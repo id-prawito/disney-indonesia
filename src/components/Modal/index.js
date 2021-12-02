@@ -1,7 +1,7 @@
-import PropTypes from "prop-types";
-import "./modal.scss";
 import React, { useEffect, useRef, useState } from "react";
 import { FaTimes } from "react-icons/fa";
+import PropTypes from "prop-types";
+import "./modal.scss";
 
 const Modal = (props) => {
     const [active, setActive] = useState(false);
@@ -28,6 +28,7 @@ export const ModalContent = (props) => {
         contentRef.current.parentNode.classList.remove("active");
         if (props.onClose) props.onClose();
     };
+
     return (
         <div ref={contentRef} className="modal__content">
             <div className="modal__content_close" onClick={closeModal}>

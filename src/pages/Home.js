@@ -1,8 +1,8 @@
 import React from "react";
-import Hero from "../components/Hero";
-import CardDisney from "../components/Disney";
 import { category } from "../services/tmdbApi";
+import CardDisney from "../components/Disney";
 import ListHome from "../components/ListCard";
+import Hero from "../components/Hero";
 
 const Home = () => {
     return (

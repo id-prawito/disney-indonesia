@@ -1,27 +1,28 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router";
-import apiConfig from "../../services/apiConfig";
-import { Link } from "react-router-dom";
-import tmdbApi from "../../services/tmdbApi";
 import { MovieRecomendations, MovieView } from "../../components/Movie";
+import { ButtonIcon, ButtonIconLain } from "../../components/Button";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router";
 import image_not from "../../assets/images/not_found_ava.png";
 import Modal, { ModalContent } from "../../components/Modal";
+import apiConfig from "../../services/apiConfig";
+import tmdbApi from "../../services/tmdbApi";
 import { FaLink } from "react-icons/fa";
 import VideoList from "./VideoList";
+import Episode from "./Episode";
 import Cast from "./Cast";
 import "./detail.scss";
 import {
+    FaRegClosedCaptioning,
     FaAudioDescription,
     FaStar,
-    FaRegClosedCaptioning,
 } from "react-icons/fa";
-import { ButtonIcon, ButtonIconLain } from "../../components/Button";
-import Episode from "./Episode";
 
 const DetailScreen = () => {
-    const { category, id } = useParams();
-    const [item, setItem] = useState(null);
+    const [movieImages, setMovieImages] = useState([]);
     const [isLoading, setloading] = useState(true);
+    const [item, setItem] = useState(null);
+    const { category, id } = useParams();
 
     useEffect(() => {
         const getDetail = async () => {
@@ -40,46 +41,42 @@ const DetailScreen = () => {
         getDetail();
     }, [category, id]);
 
-    const [movieImages, setMovieImages] = useState([]);
     useEffect(() => {
         const getImages = async () => {
             setloading(true);
             try {
                 const response = await tmdbApi.getImages(category, id);
-                for (let i = 0; i <= response.logos.length; i++) {
-                    if (
-                        (response.logos[i].iso_639_1 !== null &&
-                            response.logos[i].iso_639_1 === "en") ||
-                        response.logos[i].iso_639_1 === "en" ||
-                        response.logos[i].iso_639_1 !== null ||
-                        response.logos[i].iso_639_1 === null ||
-                        response.logos[i].iso_639_1 === undefined
-                    ) {
+                const gambar = response.logos.sort(
+                    (a, b) => Number(b.vote_count) - Number(a.vote_count)
+                );
+                for (let i = 0; i < gambar.length; i++) {
+                    if (gambar[i].iso_639_1 === "en") {
                         const Objectnya = {
-                            logosnya: response.logos[i].file_path,
+                            logosnya: gambar[i].file_path,
                         };
                         setMovieImages(Objectnya);
-                        console.log(Objectnya);
+                        break;
+                    } else if (
+                        gambar[i].iso_639_1 !== null ||
+                        gambar[i].iso_639_1 === null
+                    ) {
+                        const Objectnya = {
+                            logosnya: gambar[i].file_path,
+                        };
+                        setMovieImages(Objectnya);
+                    } else {
                         break;
                     }
                 }
-            } catch {
-                console.log("error gambarnya gaes");
-            }
+            } catch {}
             setloading(false);
         };
         getImages();
     }, [id, category]);
 
-    // const imagesLogo =
-    //     apiConfig.w500Image(movieImages.logosnya) ||
-    //     apiConfig.originalImage(movieImages.logosnya);
-
     const setModalActive = async () => {
         const modal = document.querySelector(`#modal_${id}`);
-
         const videos = await tmdbApi.getVideos(category, id);
-
         if (videos.results.length > 0) {
             const videSrc =
                 "https://www.youtube.com/embed/" + videos.results[0].key;
@@ -89,7 +86,6 @@ const DetailScreen = () => {
         } else {
             modal.querySelector(".modal__content").innerHTML = "No trailer";
         }
-
         modal.classList.toggle("active");
     };
 
@@ -160,23 +156,18 @@ const DetailScreen = () => {
                                                     {category === "movie" ? (
                                                         <div className="text">
                                                             {`${
-                                                                item.release_date ||
-                                                                item.first_air_date
-                                                            } • 
-                                                    ${Math.floor(
-                                                        item.runtime / 60
-                                                    )} h `}
-                                                            :
-                                                            {` ${
+                                                                item.release_date
+                                                            } • ${Math.floor(
+                                                                item.runtime /
+                                                                    60
+                                                            )} h : ${
                                                                 item.runtime %
                                                                 60
                                                             } min`}
                                                         </div>
                                                     ) : (
                                                         <div>
-                                                            {`${item.number_of_seasons} Season `}
-                                                            :
-                                                            {` ${item.number_of_episodes} Episode`}
+                                                            {`${item.first_air_date} • ${item.number_of_seasons} Season : ${item.number_of_episodes} Episode`}
                                                         </div>
                                                     )}
                                                 </div>
@@ -213,9 +204,7 @@ const DetailScreen = () => {
                                                 >
                                                     Watch Trailer
                                                 </ButtonIcon>
-                                                {item.homepage === "" ? (
-                                                    <></>
-                                                ) : (
+                                                {item.homepage === "" ? null : (
                                                     <a
                                                         target="_blank"
                                                         rel="noopener noreferrer"
@@ -231,14 +220,7 @@ const DetailScreen = () => {
                                                 {item.overview}
                                             </div>
                                             <div className="container_cast">
-                                                <div className="card_list_movie">
-                                                    <div className="judul_view_more">
-                                                        <div className="cast">
-                                                            Cast
-                                                        </div>
-                                                    </div>
-                                                    <Cast id={item.id} />
-                                                </div>
+                                                <Cast id={item.id} />
                                             </div>
                                         </div>
                                     </div>
@@ -246,15 +228,11 @@ const DetailScreen = () => {
                             </div>
                         </div>
                     </div>
-
-                    <div className="container_movie">
+                    <div className="container_movie" style={{ gap: 30 }}>
                         <div className="card_list_movie">
-                            {category === "movie" ? (
-                                <></>
-                            ) : (
+                            {category === "movie" ? null : (
                                 <div className="coba_episode">
                                     <h3>TV Season and Episode</h3>
-
                                     <Episode
                                         id={item.id}
                                         number_of_seasons={
@@ -264,13 +242,9 @@ const DetailScreen = () => {
                                 </div>
                             )}
                         </div>
-                    </div>
-                    <div className="container_movie">
                         <div className="video_grid">
                             <VideoList id={item.id} />
                         </div>
-                    </div>
-                    <div className="container_movie">
                         <div className="card_list_movie">
                             <MovieView
                                 type="similar"
@@ -280,9 +254,6 @@ const DetailScreen = () => {
                                 id={item.id}
                             />
                         </div>
-                    </div>
-
-                    <div className="container_movie">
                         <div className="card_list_movie">
                             <MovieRecomendations
                                 type="recomendations"
@@ -301,20 +272,18 @@ const DetailScreen = () => {
 
 const TrailerModal = (props) => {
     const item = props.item;
-
     const iframeRef = useRef(null);
-
     const onClose = () => iframeRef.current.setAttribute("src", "");
 
     return (
         <Modal id={`modal_${item.id}`}>
             <ModalContent onClose={onClose}>
                 <iframe
-                    ref={iframeRef}
-                    width="100%"
-                    height="520px"
-                    title="trailer"
                     style={{ border: "none" }}
+                    ref={iframeRef}
+                    title="trailer"
+                    height="520px"
+                    width="100%"
                     allowFullScreen
                 ></iframe>
             </ModalContent>

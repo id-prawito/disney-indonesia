@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import apiConfig from "../../services/apiConfig";
+import tmdbApi from "../../services/tmdbApi";
+import CastList from "./CastList";
 import {
     FaTwitter,
     FaFacebookF,
@@ -8,15 +12,9 @@ import {
     FaInstagram,
     FaImdb,
 } from "react-icons/fa";
-import { useParams } from "react-router";
-import { ButtonIcon } from "../components/Button";
-import apiConfig from "../services/apiConfig";
-import tmdbApi from "../services/tmdbApi";
-import CastList from "./Detail/CastList";
 
 const CastDetail = () => {
     const { id } = useParams();
-
     const [cast, setCast] = useState([]);
     const [detail, setDetail] = useState([]);
 
@@ -52,7 +50,6 @@ const CastDetail = () => {
     const gambar =
         apiConfig.originalImage(data.profile_path) ||
         apiConfig.w500Image(data.profile_path);
-    console.log(data);
 
     return (
         <>
@@ -101,22 +98,6 @@ const CastDetail = () => {
                                             {data.biography}
                                         </div>
                                     )}
-                                </div>
-                                <div className="btns">
-                                    <ButtonIcon
-                                        className="secondary_icon"
-                                        // onClick={() =>
-                                        //     history.push("/movie/" + item.id)
-                                        // }
-                                    >
-                                        Watch Now
-                                    </ButtonIcon>
-                                    <ButtonIcon
-                                        className="outline_icon"
-                                        // onClick={setModalActive}
-                                    >
-                                        Watch Trailer
-                                    </ButtonIcon>
                                 </div>
                             </div>
                             <div className="castnya__info">

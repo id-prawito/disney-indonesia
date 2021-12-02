@@ -1,10 +1,13 @@
-import React, { useRef, useEffect } from "react";
-import { FaHome, FaPlus, FaSearch, FaStar } from "react-icons/fa";
+import React, { useRef, useEffect, useContext } from "react";
+import { FaHome, FaPlus, FaStar } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import logoProfile from "../../assets/images/pikachu.png";
 import { MdMovie, MdVideoLibrary } from "react-icons/md";
 import logoNav from "../../assets/images/logoNav.svg";
+
 import "./header.scss";
+import Search from "./search";
+import { GlobalContext } from "../../config/GlobalState";
 
 const Header = () => {
     const headerRef = useRef(null);
@@ -24,6 +27,9 @@ const Header = () => {
             window.removeEventListener("scroll", shrinkHeader);
         };
     }, []);
+
+    const { watchlist, watchlistTv } = useContext(GlobalContext);
+
     return (
         <>
             <div ref={headerRef} className="header__disney">
@@ -80,16 +86,17 @@ const Header = () => {
                     </div>
                     <div className="header__profile_link">
                         <div className="header__menu">
-                            <div className="header__item">
-                                <FaSearch />
-                                <NavLink to="/5" className="header__item-link">
-                                    Search
-                                </NavLink>
-                            </div>
+                            <Search />
                             <div className="header__item">
                                 <FaPlus />
-                                <NavLink to="/5" className="header__item-link">
-                                    Add
+                                <NavLink
+                                    to="/watchlist"
+                                    className="header__item-link"
+                                >
+                                    Watchlist
+                                    <span className="text_jumlah">
+                                        {watchlist.length + watchlistTv.length}
+                                    </span>
                                 </NavLink>
                             </div>
                         </div>

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { MovieCardGrid, TvCardGrid } from "../components/MovieCard";
 import { useParams } from "react-router";
 import { ButtonIcon } from "../components/Button";
-import { MovieCardGrid, TvCardGrid } from "../components/MovieCard";
 import tmdbApi from "../services/tmdbApi";
 import "./Detail/detail.scss";
 
 const Search = () => {
     const [items, setItems] = useState([]);
-    const [page, setPage] = useState(1);
     const [totalPage, setTotalPage] = useState(0);
     const { category, keyword } = useParams();
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         const getList = async () => {
@@ -20,16 +20,13 @@ const Search = () => {
                 const response = await tmdbApi.search(category, {
                     params,
                 });
-                // console.log(response);
 
                 let currentIndex = response.results.length,
                     randomIndex;
-
                 while (currentIndex !== 0) {
                     // Pick a remaining element...
                     randomIndex = Math.floor(Math.random() * currentIndex);
                     currentIndex--;
-
                     // And swap it with the current element.
                     [
                         response.results[currentIndex],
@@ -57,12 +54,10 @@ const Search = () => {
 
             let currentIndex = response.results.length,
                 randomIndex;
-
             while (currentIndex !== 0) {
                 // Pick a remaining element...
                 randomIndex = Math.floor(Math.random() * currentIndex);
                 currentIndex--;
-
                 // And swap it with the current element.
                 [
                     response.results[currentIndex],
@@ -80,7 +75,6 @@ const Search = () => {
         }
     };
 
-    // console.log(keyword);
     return (
         <div className="container_movie">
             {category === "movie" ? (
@@ -100,7 +94,6 @@ const Search = () => {
                     ))}
                 </div>
             )}
-
             {page < totalPage ? (
                 <div
                     className="movie-grid__loadmore"

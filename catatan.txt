@@ -2,14 +2,24 @@ Fungsi Search di Menu Movie dan TV                 || done
 
 Bersih-bersih codingan
 - Component
-+ Button || done
-+ Disney || done
-+ Footer || done
-+ Header || done
-+ Hero   || done
-+ Input  || done
++ Button        || done
++ Disney        || done
++ Footer        || done
++ Header        || done
++ Hero          || done
++ Input         || done
++ ListCard      || done
++ Modal         || done
++ Config        || done
 
 Fungsi View More di tiap Halaman                   || done gokilsssssss
 Fungsi Handle image not found                      || 
 Fungsi Movie Grid di Homepage Disney (marvel, dll) || 
 Fungsi Person (opsional)                           || done
+Fungsi Search                                      || done gokilsssssss
+Fungsi Wishlist                                    || tinggal finishing, done gokilsssssss, genre dll belum
+Fungsi Scroll to the top                           ||
+Fungsi View More List Similar Recomendation Error  || done
+
+Bersihan console.log di try catch                  ||
+

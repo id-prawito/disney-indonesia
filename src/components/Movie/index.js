@@ -144,7 +144,10 @@ export const MovieRecomendations = (props) => {
             } else {
                 response = await tmdbApi.recomendations(
                     props.category,
-                    props.id
+                    props.id,
+                    {
+                        params,
+                    }
                 );
             }
 
@@ -540,7 +543,9 @@ export const MovieView = (props) => {
                         });
                 }
             } else {
-                response = await tmdbApi.similar(props.category, props.id);
+                response = await tmdbApi.similar(props.category, props.id, {
+                    params,
+                });
             }
 
             let currentIndex = response.results.length,

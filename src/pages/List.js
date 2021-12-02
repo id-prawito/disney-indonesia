@@ -1,10 +1,8 @@
-// import React, { useState } from "react";
+import { MovieCardGrid, TvCardGrid } from "../components/MovieCard";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-
 import { useLocation } from "react-router-dom";
 import { ButtonIcon } from "../components/Button";
-import { MovieCardGrid, TvCardGrid } from "../components/MovieCard";
 import tmdbApi from "../services/tmdbApi";
 
 const List = () => {
@@ -45,7 +43,6 @@ export const ListMovie = () => {
     const { category, type } = useParams();
     const location = useLocation();
     const { params, judulnya } = location.state;
-    // console.log(params);
     const [items, setItems] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPage, setTotalPage] = useState(0);
@@ -58,12 +55,10 @@ export const ListMovie = () => {
 
             let currentIndex = response.results.length,
                 randomIndex;
-
             while (currentIndex !== 0) {
                 // Pick a remaining element...
                 randomIndex = Math.floor(Math.random() * currentIndex);
                 currentIndex--;
-
                 // And swap it with the current element.
                 [
                     response.results[currentIndex],
@@ -74,7 +69,6 @@ export const ListMovie = () => {
                 ];
             }
 
-            // console.log(response);
             setItems(response.results);
             setTotalPage(response.total_pages);
         };
@@ -91,9 +85,6 @@ export const ListMovie = () => {
                 ...parameter,
             };
 
-            // console.log(params);
-            // console.log(type);
-
             switch (category) {
                 case category:
                     response = await tmdbApi.getMoviesList(type, {
@@ -109,12 +100,10 @@ export const ListMovie = () => {
 
             let currentIndex = response.results.length,
                 randomIndex;
-
             while (currentIndex !== 0) {
                 // Pick a remaining element...
                 randomIndex = Math.floor(Math.random() * currentIndex);
                 currentIndex--;
-
                 // And swap it with the current element.
                 [
                     response.results[currentIndex],
@@ -125,7 +114,6 @@ export const ListMovie = () => {
                 ];
             }
 
-            // const response = await tmdbApi.search(category, { params });
             setItems([...items, ...response.results]);
             setPage(page + 1);
         } catch {
@@ -133,9 +121,6 @@ export const ListMovie = () => {
         }
     };
 
-    // console.log(params);
-
-    console.log(items);
     return (
         <div className="container_movie">
             <div className="judul_list">{judulnya}</div>
@@ -162,7 +147,6 @@ export const ListTV = () => {
     const { category, type } = useParams();
     const location = useLocation();
     const { params, judulnya } = location.state;
-    // console.log(params);
     const [items, setItems] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPage, setTotalPage] = useState(0);
@@ -175,12 +159,10 @@ export const ListTV = () => {
 
             let currentIndex = response.results.length,
                 randomIndex;
-
             while (currentIndex !== 0) {
                 // Pick a remaining element...
                 randomIndex = Math.floor(Math.random() * currentIndex);
                 currentIndex--;
-
                 // And swap it with the current element.
                 [
                     response.results[currentIndex],
@@ -191,7 +173,6 @@ export const ListTV = () => {
                 ];
             }
 
-            // console.log(response);
             setItems(response.results);
             setTotalPage(response.total_pages);
         };
@@ -208,14 +189,11 @@ export const ListTV = () => {
                 ...parameter,
             };
 
-            console.log(params);
-
             switch (category) {
                 case category:
                     response = await tmdbApi.getTvList(type, {
                         params,
                     });
-                    // console.log(response);
                     break;
                 default:
                     response = await tmdbApi.getMoviesList(type, {
@@ -225,12 +203,10 @@ export const ListTV = () => {
 
             let currentIndex = response.results.length,
                 randomIndex;
-
             while (currentIndex !== 0) {
                 // Pick a remaining element...
                 randomIndex = Math.floor(Math.random() * currentIndex);
                 currentIndex--;
-
                 // And swap it with the current element.
                 [
                     response.results[currentIndex],
@@ -241,7 +217,6 @@ export const ListTV = () => {
                 ];
             }
 
-            // const response = await tmdbApi.search(category, { params });
             setItems([...items, ...response.results]);
             setPage(page + 1);
         } catch {
@@ -249,9 +224,6 @@ export const ListTV = () => {
         }
     };
 
-    // console.log(params);
-
-    console.log(items);
     return (
         <div className="container_movie">
             <h3>{judulnya}</h3>
@@ -278,7 +250,6 @@ export const ListDiscover = () => {
     const { category, type } = useParams();
     const location = useLocation();
     const { params, judulnya } = location.state;
-    // console.log(params);
     const [items, setItems] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPage, setTotalPage] = useState(0);
@@ -291,12 +262,10 @@ export const ListDiscover = () => {
 
             let currentIndex = response.results.length,
                 randomIndex;
-
             while (currentIndex !== 0) {
                 // Pick a remaining element...
                 randomIndex = Math.floor(Math.random() * currentIndex);
                 currentIndex--;
-
                 // And swap it with the current element.
                 [
                     response.results[currentIndex],
@@ -307,7 +276,6 @@ export const ListDiscover = () => {
                 ];
             }
 
-            // console.log(response);
             setItems(response.results);
             setTotalPage(response.total_pages);
         };
@@ -324,8 +292,6 @@ export const ListDiscover = () => {
                 ...parameter,
             };
 
-            console.log(params);
-
             switch (category) {
                 case category:
                     response = await tmdbApi.getNewMovies(type, {
@@ -341,12 +307,10 @@ export const ListDiscover = () => {
 
             let currentIndex = response.results.length,
                 randomIndex;
-
             while (currentIndex !== 0) {
                 // Pick a remaining element...
                 randomIndex = Math.floor(Math.random() * currentIndex);
                 currentIndex--;
-
                 // And swap it with the current element.
                 [
                     response.results[currentIndex],
@@ -357,7 +321,6 @@ export const ListDiscover = () => {
                 ];
             }
 
-            // const response = await tmdbApi.search(category, { params });
             setItems([...items, ...response.results]);
             setPage(page + 1);
         } catch {
@@ -365,9 +328,6 @@ export const ListDiscover = () => {
         }
     };
 
-    // console.log(params);
-
-    console.log(items);
     return (
         <div className="container_movie">
             <div className="judul_list">{judulnya}</div>
@@ -394,7 +354,6 @@ export const ListSimilar = () => {
     const { category, type } = useParams();
     const location = useLocation();
     const { params, judulnya, idnya } = location.state;
-    // console.log(params);
     const [items, setItems] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPage, setTotalPage] = useState(0);
@@ -402,64 +361,6 @@ export const ListSimilar = () => {
     useEffect(() => {
         const getList = async () => {
             let response = null;
-            if (type === "similar") {
-                response = await tmdbApi.similar(category, idnya);
-            } else {
-                response = await tmdbApi.recomendations(category, idnya);
-            }
-
-            let currentIndex = response.results.length,
-                randomIndex;
-
-            while (currentIndex !== 0) {
-                // Pick a remaining element...
-                randomIndex = Math.floor(Math.random() * currentIndex);
-                currentIndex--;
-
-                // And swap it with the current element.
-                [
-                    response.results[currentIndex],
-                    response.results[randomIndex],
-                ] = [
-                    response.results[randomIndex],
-                    response.results[currentIndex],
-                ];
-            }
-
-            // console.log(response);
-            setItems(response.results);
-            setTotalPage(response.total_pages);
-        };
-        getList();
-    }, [type, category, idnya]);
-
-    const [nama, setNama] = useState([]);
-
-    useEffect(() => {
-        const getNamanya = async () => {
-            const response = await tmdbApi.detail(category, idnya, {
-                params: {},
-            });
-            console.log(response);
-            setNama(response);
-        };
-        getNamanya();
-    }, [category, idnya]);
-
-    // console.log(nama);
-
-    const parameter = params;
-
-    const loadMore = async () => {
-        try {
-            let response = null;
-            const params = {
-                page: page + 1,
-                ...parameter,
-            };
-
-            console.log(params);
-
             if (type === "similar") {
                 response = await tmdbApi.similar(category, idnya, {
                     params,
@@ -477,7 +378,6 @@ export const ListSimilar = () => {
                 // Pick a remaining element...
                 randomIndex = Math.floor(Math.random() * currentIndex);
                 currentIndex--;
-
                 // And swap it with the current element.
                 [
                     response.results[currentIndex],
@@ -488,7 +388,61 @@ export const ListSimilar = () => {
                 ];
             }
 
-            // const response = await tmdbApi.search(category, { params });
+            setItems(response.results);
+            setTotalPage(response.total_pages);
+        };
+        getList();
+    }, [type, category, idnya, params]);
+
+    const [nama, setNama] = useState([]);
+
+    useEffect(() => {
+        const getNamanya = async () => {
+            const response = await tmdbApi.detail(category, idnya, {
+                params: {},
+            });
+            console.log(response);
+            setNama(response);
+        };
+        getNamanya();
+    }, [category, idnya]);
+
+    const parameter = params;
+
+    const loadMore = async () => {
+        try {
+            let response = null;
+            const params = {
+                page: page + 1,
+                ...parameter,
+            };
+
+            if (type === "similar") {
+                response = await tmdbApi.similar(category, idnya, {
+                    params,
+                });
+            } else {
+                response = await tmdbApi.recomendations(category, idnya, {
+                    params,
+                });
+            }
+
+            let currentIndex = response.results.length,
+                randomIndex;
+            while (currentIndex !== 0) {
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                // And swap it with the current element.
+                [
+                    response.results[currentIndex],
+                    response.results[randomIndex],
+                ] = [
+                    response.results[randomIndex],
+                    response.results[currentIndex],
+                ];
+            }
+
             setItems([...items, ...response.results]);
             setPage(page + 1);
         } catch {
@@ -496,9 +450,6 @@ export const ListSimilar = () => {
         }
     };
 
-    console.log(params);
-
-    // console.log(items);
     return (
         <div className="container_movie">
             {category === "movie" ? (

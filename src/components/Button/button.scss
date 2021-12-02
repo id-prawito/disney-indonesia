@@ -53,6 +53,19 @@
     }
 }
 
+.icon_small_transparent_search {
+    display: flex;
+    background-color: transparent;
+    padding: 8px;
+    font-size: 16px;
+    gap: 10px;
+
+    &:hover {
+        background-color: rgba($color: #474747, $alpha: 0.6);
+    }
+}
+
+
 .icon {
     display: flex;
     border: 1px solid $primary-color;
