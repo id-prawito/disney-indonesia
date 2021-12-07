@@ -5,7 +5,7 @@ import { useState } from "react/cjs/react.development";
 import tmdbApi from "../../services/tmdbApi";
 // import { NavLink } from "react-router-dom";
 import { ButtonIconLain } from "../Button";
-import { MovieCardSearch, TvCardSeacrh } from "../MovieCard";
+import { MovieCardSearch, TvCardSearch } from "../MovieCard";
 
 const Search = () => {
     const [query, setQuery] = useState("");
@@ -69,7 +69,7 @@ const Search = () => {
     // const data = { ...items, ...itemsTv };
 
     // console.log(data);
-    // console.log(items);
+    // console.log(itemsTv);
 
     return (
         <>
@@ -110,7 +110,7 @@ const Search = () => {
 
                                     {itemsTv &&
                                         itemsTv.map((item, i) => (
-                                            <TvCardSeacrh
+                                            <TvCardSearch
                                                 key={i}
                                                 className="card_slide"
                                                 item={item}
@@ -120,7 +120,13 @@ const Search = () => {
                                 </>
                             )}
                         </div>
-                    ) : null}
+                    ) : (
+                        <div className="search_result_not">
+                            <div className="not_found_search">
+                                <h4>Not Found</h4>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </>

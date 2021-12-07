@@ -2,23 +2,23 @@
 
 .movie-card {
     position: relative;
-    background-position: top;
     background-repeat: no-repeat;
+    background-position: top;
     background-size: cover;
-    border-radius: 4px;
     margin-bottom: 2.3rem;
     margin-top: 2.3rem;
+    border-radius: 4px;
     transition: .5s ease-in-out;
 
     img {
-        border-radius: 5px;
         background: #25314d;
+        border-radius: 5px;
     }
 
     &:hover {
+        transition: .5s ease-in-out;
         transform: scale(1.23);
         z-index: 4;
-        transition: .5s ease-in-out;
     }
 
     &:hover .details {
@@ -26,29 +26,29 @@
     }
 
     .details {
-        position: absolute;
-        top: 50%;
         display: flex;
-        flex-direction: column;
         justify-content: flex-end;
+        flex-direction: column;
+        background-size: cover;
+        position: absolute;
         border-radius: 5px;
-        background-image: linear-gradient(to bottom, rgba(4, 8, 15, 0), rgba(37, 40, 53, 0.98), #252835 70%);
         color: #fff;
-        opacity: 0;
         width: 101%;
         height: 51%;
-        background-size: cover;
+        opacity: 0;
+        top: 50%;
+        background-image: linear-gradient(to bottom, rgba(4, 8, 15, 0), rgba(37, 40, 53, 0.98), #252835 70%);
         transition: .3s ease-in-out;
 
         &:hover {
-            opacity: 1;
             transition: .3s ease-in;
+            opacity: 1;
         }
 
         .pembungkus {
-            padding: 10px;
             display: flex;
             flex-direction: column;
+            padding: 10px;
             gap: 3px;
 
             .text_judul {
@@ -56,51 +56,48 @@
             }
 
             .sub-info {
-                padding: 0;
                 display: inline;
+                padding: 0;
 
                 .subtitle {
-                    font-size: 9px;
                     line-height: 14px;
+                    font-size: 9px;
                 }
             }
 
             .deskripsi {
-                font-size: 10px;
-                text-overflow: ellipsis;
-                overflow: hidden;
-                text-align: left;
                 display: -webkit-box;
                 -webkit-box-orient: vertical;
+                text-overflow: ellipsis;
                 -webkit-line-clamp: 2;
                 white-space: normal;
                 margin-bottom: 4px;
                 line-height: 14px;
+                overflow: hidden;
+                text-align: left;
+                font-size: 10px;
             }
 
             .action {
                 padding: 0 0 0 2.5px;
-                border-radius: 2px;
                 white-space: nowrap;
+                border-radius: 2px;
                 opacity: 0.8;
 
                 &:hover {
                     opacity: 1;
                 }
             }
-
         }
-
     }
 
     .btn {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(0);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transform: translate(-50%, -50%) scale(0);
+        left: 50%;
+        top: 50%;
     }
-
 
     @media (hover: hover) and (pointer: fine) {
         &:hover::before {
@@ -110,168 +107,166 @@
         &:hover .btn {
             transform: translate(-50%, -50%) scale(1);
         }
+    }
 
-        // &:hover .details {
-        //     transform: translate(-50%, -50%);
-        // }
+    &-skeleton {
+        position: relative;
+        background-repeat: no-repeat;
+        background-position: top;
+        background-size: cover;
+        background: #192133;
+        margin-bottom: 2.3rem;
+        margin-top: 2.3rem;
+        border-radius: 4px;
+        overflow: hidden;
+        height: 300px;
+        animation: pulse 2s infinite;
+        transition: .5s ease-in-out;
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    }
+
+    &_search {
+        display: flex;
+        flex-direction: row;
+        background-color: rgba(37, 49, 77, 0.4);
+        border-radius: 8px;
+        margin: 1rem;
+        padding: 5px;
+        gap: 10px;
+
+        .info_card {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-direction: column;
+            max-width: 120px;
+
+            .nama {
+                color: rgb(255, 255, 255);
+                text-align: start;
+                font-weight: 500;
+                font-size: 12px;
+
+                .runtime {
+                    margin-top: 10px;
+                    font-size: 10px;
+                }
+            }
+
+            .content {
+                display: flex;
+                justify-content: center;
+                background: rgb(56 57 60 / 90%);
+                text-transform: uppercase;
+                border-radius: 8px;
+                font-weight: 600;
+                font-size: 12px;
+                color: #fff;
+                padding: 6px;
+                gap: 6px;
+
+                &:hover {
+                    background: rgb(56 57 60 / 70%);
+                }
+            }
+
+            .subtitle_search {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+                color: rgb(255, 255, 255);
+                text-align: start;
+                font-weight: 500;
+                font-size: 10px;
+                gap: 4px;
+
+                .genres_search {
+                    text-align: start;
+                }
+            }
+        }
+    }
+
+    &-not_found {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        background-repeat: no-repeat;
+        background-position: top;
+        background-size: cover;
+        background: #192133;
+        text-transform: capitalize;
+        margin-bottom: 2.3rem;
+        margin-top: 2.3rem;
+        border-radius: 4px;
+        overflow: hidden;
+        max-width: 210px;
+        height: 300px;
+        transition: .5s ease-in-out;
+    }
+
+    &-search {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        background-repeat: no-repeat;
+        background-position: top;
+        background-size: cover;
+        text-transform: capitalize;
+        border-radius: 4px;
+        overflow: hidden;
+        max-width: 120px;
+        transition: .5s ease-in-out;
+
+        img {
+            border-radius: 4px;
+        }
+
+        .gambar_kosong {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #191e2b;
+            max-width: 120px;
+            font-size: 12px;
+            height: 200px;
+        }
     }
 }
 
+// Transform to Right
 .tambahan {
     &:hover {
         transform: scale3d(1.23, 1.23, 1) translate3d(11%, 0, 0) perspective(500px);
-        z-index: 4;
         transition: .5s ease-in-out;
+        z-index: 4;
+    }
+
+    // Transform to to Left
+    &_kanan {
+        &:hover {
+            transform: scale3d(1.23, 1.23, 1) translate3d(-12%, 0, 0) perspective(500px);
+            transition: .5s ease-in-out;
+            z-index: 4;
+        }
     }
 }
 
-.tambahan_kanan {
-    &:hover {
-        transform: scale3d(1.23, 1.23, 1) translate3d(-12%, 0, 0) perspective(500px);
-        z-index: 4;
-        transition: .5s ease-in-out;
-    }
-}
-
+// Transform to to Center
 .card-slide {
     opacity: 1;
-}
-
-.movie-card-skeleton {
-    position: relative;
-    background: #192133;
-    overflow: hidden;
-    background-position: top;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 4px;
-    margin-bottom: 2.3rem;
-    margin-top: 2.3rem;
-    transition: .5s ease-in-out;
-    height: 300px;
-
-    animation: pulse 2s infinite;
-
-    @keyframes pulse {
-        0% {
-            opacity: 1;
-        }
-
-        50% {
-            opacity: 0.5;
-        }
-
-        100% {
-            opacity: 1;
-        }
-    }
-}
-
-.movie-card-not_found {
-    position: relative;
-    background: #192133;
-    overflow: hidden;
-    max-width: 210px;
-    background-position: top;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 4px;
-    margin-bottom: 2.3rem;
-    margin-top: 2.3rem;
-    transition: .5s ease-in-out;
-    height: 300px;
-    display: flex;
-    text-transform: capitalize;
-    align-items: center;
-    justify-content: center;
-}
-
-.movie-card-search {
-    position: relative;
-    overflow: hidden;
-    max-width: 120px;
-    background-position: top;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 4px;
-    transition: .5s ease-in-out;
-    display: flex;
-    text-transform: capitalize;
-    align-items: center;
-    justify-content: center;
-    // margin-left: 10px;
-
-    img {
-        border-radius: 4px;
-    }
-}
-
-.gambar_kosong {
-    display: flex;
-    height: 200px;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-    max-width: 120px;
-}
-
-.movie_search {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    margin: 1rem;
-    background-color: rgba(37, 49, 77, 0.4);
-    padding: 5px;
-    border-radius: 8px;
-}
-
-.info_card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    max-width: 120px;
-
-    .nama {
-        font-size: 12px;
-        color: rgb(255, 255, 255);
-        font-weight: 500;
-        text-align: start;
-
-        .runtime {
-            font-size: 10px;
-            margin-top: 10px;
-        }
-    }
-
-    .content {
-        display: flex;
-        justify-content: center;
-        background: rgb(56 57 60 / 90%);
-        text-transform: uppercase;
-        border-radius: 8px;
-        font-weight: 600;
-        font-size: 12px;
-        color: #fff;
-        padding: 6px;
-        gap: 6px;
-
-        &:hover {
-            background: rgb(56 57 60 / 70%);
-        }
-    }
-
-    .subtitle_search {
-        font-size: 10px;
-        color: rgb(255, 255, 255);
-        font-weight: 500;
-        display: grid;
-        grid-template-columns: repeat(2, auto);
-        text-align: start;
-        gap: 4px;
-
-        .genres_search {
-            text-align: start;
-        }
-    }
 }

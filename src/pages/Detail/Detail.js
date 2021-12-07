@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { MovieRecomendations, MovieView } from "../../components/Movie";
-import { ButtonIcon, ButtonIconLain } from "../../components/Button";
+import Button, { ButtonIcon, ButtonIconLain } from "../../components/Button";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import image_not from "../../assets/images/not_found_ava.png";
 import Modal, { ModalContent } from "../../components/Modal";
 import apiConfig from "../../services/apiConfig";
 import tmdbApi from "../../services/tmdbApi";
-import { FaLink } from "react-icons/fa";
+import { FaCheck, FaLink, FaPlus } from "react-icons/fa";
 import VideoList from "./VideoList";
 import Episode from "./Episode";
 import Cast from "./Cast";
@@ -17,6 +17,7 @@ import {
     FaAudioDescription,
     FaStar,
 } from "react-icons/fa";
+import { GlobalContext } from "../../config/GlobalState";
 
 const DetailScreen = () => {
     const [movieImages, setMovieImages] = useState([]);
@@ -65,7 +66,7 @@ const DetailScreen = () => {
                         };
                         setMovieImages(Objectnya);
                     } else {
-                        break;
+                        console.log("error");
                     }
                 }
             } catch {}
@@ -88,6 +89,22 @@ const DetailScreen = () => {
         }
         modal.classList.toggle("active");
     };
+
+    const idnya = parseInt(id);
+
+    // Function Watchlist
+    const {
+        addMovieToWatchlist,
+        watchlist,
+        removeMovieFromWatchlist,
+        addTvToWatchlist,
+        watchlistTv,
+        removeTvFromWatchlist,
+    } = useContext(GlobalContext);
+    let storedMovie = watchlist.find((o) => o.id === idnya);
+    const watchlistDisabled = storedMovie ? true : false;
+    let storedTv = watchlistTv.find((o) => o.id === idnya);
+    const watchlistTvDisabled = storedTv ? true : false;
 
     return (
         <>
@@ -132,15 +149,33 @@ const DetailScreen = () => {
                                                     />
                                                 )}
                                             </div>
+                                            <span className="text_judul">
+                                                {item.title || item.name}
+                                            </span>
                                             <div className="genre_item">
                                                 <div className="genre_item_item__content">
                                                     <FaAudioDescription
                                                         fontSize={16}
                                                     />
-                                                    {
-                                                        item.spoken_languages[0]
-                                                            .iso_639_1
-                                                    }
+                                                    {item.spoken_languages
+                                                        .length < 1 ? (
+                                                        "EN"
+                                                    ) : (
+                                                        <>
+                                                            {item.spoken_languages ===
+                                                            null ? (
+                                                                <h4>H</h4>
+                                                            ) : (
+                                                                <>
+                                                                    {
+                                                                        item
+                                                                            .spoken_languages[0]
+                                                                            .iso_639_1
+                                                                    }
+                                                                </>
+                                                            )}
+                                                        </>
+                                                    )}
                                                 </div>
                                                 <div className="genre_item_item__content">
                                                     <FaStar fontSize={14} />
@@ -155,18 +190,23 @@ const DetailScreen = () => {
                                                 <div className="year">
                                                     {category === "movie" ? (
                                                         <div className="text">
-                                                            {`${
-                                                                item.release_date
-                                                            } • ${Math.floor(
-                                                                item.runtime /
-                                                                    60
-                                                            )} h : ${
-                                                                item.runtime %
-                                                                60
-                                                            } min`}
+                                                            {item.runtime !==
+                                                            null ? (
+                                                                <>
+                                                                    {`${
+                                                                        item.release_date
+                                                                    } • ${Math.floor(
+                                                                        item.runtime /
+                                                                            60
+                                                                    )} h : ${
+                                                                        item.runtime %
+                                                                        60
+                                                                    } min`}
+                                                                </>
+                                                            ) : null}
                                                         </div>
                                                     ) : (
-                                                        <div>
+                                                        <div className="text">
                                                             {`${item.first_air_date} • ${item.number_of_seasons} Season : ${item.number_of_episodes} Episode`}
                                                         </div>
                                                     )}
@@ -210,10 +250,130 @@ const DetailScreen = () => {
                                                         rel="noopener noreferrer"
                                                         href={item.homepage}
                                                     >
-                                                        <ButtonIconLain className="outline_icon">
-                                                            <FaLink />
+                                                        <ButtonIconLain className="outline_icon_link">
+                                                            <FaLink
+                                                                color={"#fff"}
+                                                            />
                                                         </ButtonIconLain>
                                                     </a>
+                                                )}
+
+                                                {category === "tv" ? (
+                                                    <>
+                                                        {watchlistTvDisabled ===
+                                                        true ? (
+                                                            <div className="watchlist">
+                                                                <Button
+                                                                    className="icon_small_transparent"
+                                                                    onClick={() =>
+                                                                        removeTvFromWatchlist(
+                                                                            item.id
+                                                                        )
+                                                                    }
+                                                                    disabled={
+                                                                        watchlistTvDisabled
+                                                                    }
+                                                                >
+                                                                    <FaCheck
+                                                                        fontSize={
+                                                                            14
+                                                                        }
+                                                                        color={
+                                                                            "#1f80e0"
+                                                                        }
+                                                                    />
+                                                                </Button>
+
+                                                                <div className="text_watchlist">
+                                                                    Watchlist
+                                                                </div>
+                                                            </div>
+                                                        ) : (
+                                                            <div className="watchlist">
+                                                                <Button
+                                                                    className="icon_small_transparent"
+                                                                    onClick={() =>
+                                                                        addTvToWatchlist(
+                                                                            item
+                                                                        )
+                                                                    }
+                                                                    disabled={
+                                                                        watchlistTvDisabled
+                                                                    }
+                                                                >
+                                                                    <FaPlus
+                                                                        fontSize={
+                                                                            14
+                                                                        }
+                                                                        color={
+                                                                            "#fff"
+                                                                        }
+                                                                    />
+                                                                </Button>
+                                                                <div className="text_watchlist">
+                                                                    Watchlist
+                                                                </div>
+                                                            </div>
+                                                        )}
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        {watchlistDisabled ===
+                                                        true ? (
+                                                            <div className="watchlist">
+                                                                <Button
+                                                                    className="icon_small_transparent"
+                                                                    onClick={() =>
+                                                                        removeMovieFromWatchlist(
+                                                                            item.id
+                                                                        )
+                                                                    }
+                                                                    disabled={
+                                                                        watchlistDisabled
+                                                                    }
+                                                                >
+                                                                    <FaCheck
+                                                                        fontSize={
+                                                                            14
+                                                                        }
+                                                                        color={
+                                                                            "#1f80e0"
+                                                                        }
+                                                                    />
+                                                                </Button>
+
+                                                                <div className="text_watchlist">
+                                                                    Watchlist
+                                                                </div>
+                                                            </div>
+                                                        ) : (
+                                                            <div className="watchlist">
+                                                                <Button
+                                                                    className="icon_small_transparent"
+                                                                    onClick={() =>
+                                                                        addMovieToWatchlist(
+                                                                            item
+                                                                        )
+                                                                    }
+                                                                    disabled={
+                                                                        watchlistDisabled
+                                                                    }
+                                                                >
+                                                                    <FaPlus
+                                                                        fontSize={
+                                                                            14
+                                                                        }
+                                                                        color={
+                                                                            "#fff"
+                                                                        }
+                                                                    />
+                                                                </Button>
+                                                                <div className="text_watchlist">
+                                                                    Watchlist
+                                                                </div>
+                                                            </div>
+                                                        )}
+                                                    </>
                                                 )}
                                             </div>
                                             <div className="overview">

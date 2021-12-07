@@ -1,5 +1,3 @@
-Fungsi Search di Menu Movie dan TV                 || done
-
 Bersih-bersih codingan
 - Component
 + Button        || done
@@ -10,16 +8,29 @@ Bersih-bersih codingan
 + Input         || done
 + ListCard      || done
 + Modal         || done
++ Movie         || done
++ MovieCard     || done
 + Config        || done
 
+- Pages
++ Cast          ||
++ Detail        ||
+  + Cast        || done
+  + Episode     || done
+  + VideoList   || done
++ Catalog       || done
+
+
+Fungsi Search di Menu Movie dan TV                 || done gokilsssssss
 Fungsi View More di tiap Halaman                   || done gokilsssssss
-Fungsi Handle image not found                      || 
-Fungsi Movie Grid di Homepage Disney (marvel, dll) || 
-Fungsi Person (opsional)                           || done
+Fungsi Person (opsional)                           || done gokilsssssss
 Fungsi Search                                      || done gokilsssssss
-Fungsi Wishlist                                    || tinggal finishing, done gokilsssssss, genre dll belum
-Fungsi Scroll to the top                           ||
-Fungsi View More List Similar Recomendation Error  || done
+Fungsi Wishlist                                    || done gokilsssssss
+Fungsi View More List Similar Recomendation        || done gokilsssssss
+Fungsi genre                                       || done gokilsssssss
+Fungsi Scroll to the top                           || done gokilsssssss
+Fungsi Handle image not found                      || done almost
+Fungsi Movie Grid di Homepage Disney (marvel, dll) || done
 
 Bersihan console.log di try catch                  ||
 

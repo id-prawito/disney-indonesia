@@ -89,6 +89,75 @@ const Hero = (props) => {
     );
 };
 
+export const HeroChannels = (props) => {
+    const [movieItems, setMovieItems] = useState([]);
+    SwiperCore.use([Autoplay]);
+
+    useEffect(() => {
+        const getMovies = async () => {
+            const params = props.params;
+            try {
+                let response = null;
+                switch (props.category) {
+                    case category.movie:
+                        response = await tmdbApi.getMoviesList(
+                            movieType.popular,
+                            { params }
+                        );
+                        break;
+                    default:
+                        response = await tmdbApi.getTvList(tvType.popular, {
+                            params,
+                        });
+                }
+
+                let currentIndex = response.results.length,
+                    randomIndex;
+                while (currentIndex !== 0) {
+                    // Pick a remaining element...
+                    randomIndex = Math.floor(Math.random() * currentIndex);
+                    currentIndex--;
+                    // And swap it with the current element.
+                    [
+                        response.results[currentIndex],
+                        response.results[randomIndex],
+                    ] = [
+                        response.results[randomIndex],
+                        response.results[currentIndex],
+                    ];
+                }
+                setMovieItems(response.results.slice(0, 1));
+            } catch {
+                console.log("error");
+            }
+        };
+        getMovies();
+    }, [props.params, props.category]);
+
+    return (
+        <div className="hero__slide">
+            {movieItems.map((item, i) => (
+                <SwiperSlide key={i}>
+                    {props.category === "movie"
+                        ? ({ isActive }) => (
+                              <HeroSlideItemChannels
+                                  item={item}
+                                  gambar={props.gambar}
+                                  className={`${isActive ? "active" : ""}`}
+                              />
+                          )
+                        : ({ isActive }) => (
+                              <HeroSlideItemTV
+                                  item={item}
+                                  className={`${isActive ? "active" : ""}`}
+                              />
+                          )}
+                </SwiperSlide>
+            ))}
+        </div>
+    );
+};
+
 const HeroSlideItem = (props) => {
     let history = useHistory();
     const item = props.item;
@@ -135,9 +204,7 @@ const HeroSlideItem = (props) => {
                         break;
                     }
                 }
-            } catch {
-                console.log("error");
-            }
+            } catch {}
             setloading(false);
         };
         getImages();
@@ -165,16 +232,29 @@ const HeroSlideItem = (props) => {
                     </div>
                     <div className="hero__slide-item_info">
                         <div className="hero__slide-item_info-bungkus">
-                            <div className="images_title">
-                                {isLoading ? (
-                                    <div className="text_loading">
-                                        Loading...
-                                    </div>
-                                ) : movieImages.logosnya === undefined ? (
-                                    <img alt="not_available" src={image_not} />
-                                ) : (
-                                    <img alt="poster_path" src={imagesLogo} />
-                                )}
+                            {movieImages.logosnya !== null ? (
+                                <div className="images_title">
+                                    {isLoading ? (
+                                        <div className="text_loading">
+                                            Loading...
+                                        </div>
+                                    ) : movieImages.logosnya === undefined ? (
+                                        <img
+                                            alt="not_available"
+                                            src={image_not}
+                                        />
+                                    ) : (
+                                        <img
+                                            alt="poster_path"
+                                            src={imagesLogo}
+                                        />
+                                    )}
+                                </div>
+                            ) : (
+                                <img alt="not_available" src={image_not} />
+                            )}
+                            <div className="text_judul">
+                                {item.title || item.name}
                             </div>
                             <div className="genre_item">
                                 <div className="genre_item_item__content">
@@ -347,6 +427,33 @@ const HeroSlideItemTV = (props) => {
                                 Watch Trailer
                             </ButtonIcon>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+const HeroSlideItemChannels = (props) => {
+    const item = props.item;
+    const background = apiConfig.originalImage(
+        item.backdrop_path ? item.backdrop_path : item.poster_path
+    );
+
+    return (
+        <div
+            className={`hero__slide-item ${props.className}`}
+            style={{
+                backgroundImage: `url(${background})`,
+            }}
+        >
+            <div className="hero__slide-item__content container">
+                <div
+                    className="hero__slide-item__bungkus"
+                    style={{ justifyContent: "center" }}
+                >
+                    <div className="images_title_channels">
+                        <img alt="poster_path" src={props.gambar} />
                     </div>
                 </div>
             </div>

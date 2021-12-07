@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { SwiperSlide, Swiper } from "swiper/react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import tmdbApi, { category } from "../../services/tmdbApi";
+import PropTypes from "prop-types";
+import { ButtonIconView } from "../Button";
 import MovieCard, {
     MovieCardSimilar,
     TvCard,
     TvCardSimilar,
 } from "../MovieCard";
 import "./movie.scss";
-import { ButtonIconView } from "../Button";
-import { Link } from "react-router-dom";
 
 const Movie = (props) => {
     const [items, setItems] = useState([]);
+
     useEffect(() => {
         const getList = async () => {
             let response = null;
             const params = props.params;
-            // console.log(params);
             if (props.type !== "similar") {
                 switch (props.category) {
                     case category.movie:
@@ -36,12 +36,10 @@ const Movie = (props) => {
 
             let currentIndex = response.results.length,
                 randomIndex;
-
             while (currentIndex !== 0) {
                 // Pick a remaining element...
                 randomIndex = Math.floor(Math.random() * currentIndex);
                 currentIndex--;
-
                 // And swap it with the current element.
                 [
                     response.results[currentIndex],
@@ -57,7 +55,6 @@ const Movie = (props) => {
         getList();
     }, [props.type, props.category, props.id, props.params]);
 
-    // console.log(items);
     return (
         <div className="movie-list">
             <Swiper grabCursor={true} spaceBetween={20} slidesPerView={8}>
@@ -123,8 +120,143 @@ Movie.propTypes = {
     params: PropTypes.object.isRequired,
 };
 
+export const MovieView = (props) => {
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        const getList = async () => {
+            let response = null;
+            const params = props.params;
+            if (props.type !== "similar") {
+                switch (props.category) {
+                    case category.movie:
+                        response = await tmdbApi.getMoviesList(props.type, {
+                            params,
+                        });
+                        break;
+                    default:
+                        response = await tmdbApi.getTvList(props.type, {
+                            params,
+                        });
+                }
+            } else {
+                response = await tmdbApi.similar(props.category, props.id, {
+                    params,
+                });
+            }
+
+            let currentIndex = response.results.length,
+                randomIndex;
+            while (currentIndex !== 0) {
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                // And swap it with the current element.
+                [
+                    response.results[currentIndex],
+                    response.results[randomIndex],
+                ] = [
+                    response.results[randomIndex],
+                    response.results[currentIndex],
+                ];
+            }
+
+            setItems(response.results);
+        };
+        getList();
+    }, [props.type, props.category, props.id, props.params]);
+
+    const params = props.params;
+    const judulnya = props.judul;
+    const idnya = props.id;
+
+    return (
+        <>
+            <div className="judul_view_more">
+                <h3>{props.judul}</h3>
+                <Link
+                    to={{
+                        pathname: `/${props.category}/list/${props.type}`,
+                        state: {
+                            params,
+                            judulnya,
+                            idnya,
+                        },
+                    }}
+                >
+                    <ButtonIconView className="icon_small">
+                        View More
+                    </ButtonIconView>
+                </Link>
+            </div>
+            <div className="movie-list">
+                <Swiper grabCursor={true} spaceBetween={20} slidesPerView={8}>
+                    {items.slice(0, 1).map((item, i) => (
+                        <SwiperSlide key={i}>
+                            {props.category === "movie" ? (
+                                <MovieCard
+                                    className="tambahan"
+                                    item={item}
+                                    category={props.category}
+                                />
+                            ) : (
+                                <TvCard
+                                    className="tambahan"
+                                    item={item}
+                                    category={props.category}
+                                />
+                            )}
+                        </SwiperSlide>
+                    ))}
+                    {items.slice(1, 19).map((item, i) => (
+                        <SwiperSlide key={i}>
+                            {props.category === "movie" ? (
+                                <MovieCard
+                                    className="card_slide"
+                                    item={item}
+                                    category={props.category}
+                                />
+                            ) : (
+                                <TvCard
+                                    className="card_slide"
+                                    item={item}
+                                    category={props.category}
+                                />
+                            )}
+                        </SwiperSlide>
+                    ))}
+                    {items.slice(19, 20).map((item, i) => (
+                        <SwiperSlide key={i}>
+                            {props.category === "movie" ? (
+                                <MovieCard
+                                    className="tambahan_kanan"
+                                    item={item}
+                                    category={props.category}
+                                />
+                            ) : (
+                                <TvCard
+                                    className="tambahan_kanan"
+                                    item={item}
+                                    category={props.category}
+                                />
+                            )}
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
+        </>
+    );
+};
+
+MovieView.propTypes = {
+    category: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    params: PropTypes.object.isRequired,
+};
+
 export const MovieRecomendations = (props) => {
     const [items, setItems] = useState([]);
+
     useEffect(() => {
         const getList = async () => {
             let response = null;
@@ -153,12 +285,10 @@ export const MovieRecomendations = (props) => {
 
             let currentIndex = response.results.length,
                 randomIndex;
-
             while (currentIndex !== 0) {
                 // Pick a remaining element...
                 randomIndex = Math.floor(Math.random() * currentIndex);
                 currentIndex--;
-
                 // And swap it with the current element.
                 [
                     response.results[currentIndex],
@@ -208,7 +338,6 @@ export const MovieRecomendations = (props) => {
                             </ButtonIconView>
                         </Link>
                     </div>
-
                     <div className="movie-list">
                         <Swiper
                             grabCursor={true}
@@ -282,6 +411,7 @@ MovieRecomendations.propTypes = {
 
 export const MovieSimilar = (props) => {
     const [items, setItems] = useState([]);
+
     useEffect(() => {
         const getList = async () => {
             let response = null;
@@ -304,12 +434,10 @@ export const MovieSimilar = (props) => {
 
             let currentIndex = response.results.length,
                 randomIndex;
-
             while (currentIndex !== 0) {
                 // Pick a remaining element...
                 randomIndex = Math.floor(Math.random() * currentIndex);
                 currentIndex--;
-
                 // And swap it with the current element.
                 [
                     response.results[currentIndex],
@@ -392,6 +520,7 @@ MovieSimilar.propTypes = {
 
 export const DiscoverMovieTV = (props) => {
     const [items, setItems] = useState([]);
+
     useEffect(() => {
         const getList = async () => {
             let response = null;
@@ -411,16 +540,13 @@ export const DiscoverMovieTV = (props) => {
             } else {
                 response = await tmdbApi.similar(props.category, props.id);
             }
-            // setItems(response.results);
 
             let currentIndex = response.results.length,
                 randomIndex;
-
             while (currentIndex !== 0) {
                 // Pick a remaining element...
                 randomIndex = Math.floor(Math.random() * currentIndex);
                 currentIndex--;
-
                 // And swap it with the current element.
                 [
                     response.results[currentIndex],
@@ -431,7 +557,114 @@ export const DiscoverMovieTV = (props) => {
                 ];
             }
 
-            // console.log(response);
+            setItems(response.results);
+        };
+        getList();
+    }, [props.type, props.category, props.id, props.params]);
+
+    const params = props.params;
+    const judulnya = props.judul;
+
+    return (
+        <>
+            <div className="judul_view_more">
+                <h3>{props.judul}</h3>
+                <Link
+                    to={{
+                        pathname: `/${props.category}/list/${props.type}`,
+                        state: {
+                            params,
+                            judulnya,
+                        },
+                    }}
+                >
+                    <ButtonIconView className="icon_small">
+                        View More
+                    </ButtonIconView>
+                </Link>
+            </div>
+            <div className="movie-list">
+                <Swiper grabCursor={true} spaceBetween={20} slidesPerView={8}>
+                    {items.slice(0, 1).map((item, i) => (
+                        <SwiperSlide key={i}>
+                            {props.category === "movie" ? (
+                                <MovieCard
+                                    className="tambahan"
+                                    item={item}
+                                    category={props.category}
+                                />
+                            ) : (
+                                <TvCard
+                                    className="tambahan"
+                                    item={item}
+                                    category={props.category}
+                                />
+                            )}
+                        </SwiperSlide>
+                    ))}
+                    {items.slice(1, 19).map((item, i) => (
+                        <SwiperSlide key={i}>
+                            {props.category === "movie" ? (
+                                <MovieCard
+                                    className="card_slide"
+                                    item={item}
+                                    category={props.category}
+                                />
+                            ) : (
+                                <TvCard
+                                    className="card_slide"
+                                    item={item}
+                                    category={props.category}
+                                />
+                            )}
+                        </SwiperSlide>
+                    ))}
+                    {items.slice(19, 20).map((item, i) => (
+                        <SwiperSlide key={i}>
+                            {props.category === "movie" ? (
+                                <MovieCard
+                                    className="tambahan_kanan"
+                                    item={item}
+                                    category={props.category}
+                                />
+                            ) : (
+                                <TvCard
+                                    className="tambahan_kanan"
+                                    item={item}
+                                    category={props.category}
+                                />
+                            )}
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
+        </>
+    );
+};
+
+export const DiscoverMovieTVNotWill = (props) => {
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        const getList = async () => {
+            let response = null;
+            const params = props.params;
+            if (props.type !== "similar") {
+                switch (props.category) {
+                    case category.movie:
+                        response = await tmdbApi.getNewMovies(props.type, {
+                            params,
+                        });
+                        break;
+                    default:
+                        response = await tmdbApi.getNewTV(props.type, {
+                            params,
+                        });
+                }
+            } else {
+                response = await tmdbApi.similar(props.category, props.id);
+            }
+
             setItems(response.results);
         };
         getList();
@@ -518,143 +751,6 @@ export const DiscoverMovieTV = (props) => {
 };
 
 DiscoverMovieTV.propTypes = {
-    category: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    params: PropTypes.object.isRequired,
-};
-
-export const MovieView = (props) => {
-    const [items, setItems] = useState([]);
-    useEffect(() => {
-        const getList = async () => {
-            let response = null;
-            const params = props.params;
-            // console.log(params);
-            if (props.type !== "similar") {
-                switch (props.category) {
-                    case category.movie:
-                        response = await tmdbApi.getMoviesList(props.type, {
-                            params,
-                        });
-                        break;
-                    default:
-                        response = await tmdbApi.getTvList(props.type, {
-                            params,
-                        });
-                }
-            } else {
-                response = await tmdbApi.similar(props.category, props.id, {
-                    params,
-                });
-            }
-
-            let currentIndex = response.results.length,
-                randomIndex;
-
-            while (currentIndex !== 0) {
-                // Pick a remaining element...
-                randomIndex = Math.floor(Math.random() * currentIndex);
-                currentIndex--;
-
-                // And swap it with the current element.
-                [
-                    response.results[currentIndex],
-                    response.results[randomIndex],
-                ] = [
-                    response.results[randomIndex],
-                    response.results[currentIndex],
-                ];
-            }
-
-            setItems(response.results);
-        };
-        getList();
-    }, [props.type, props.category, props.id, props.params]);
-
-    // console.log(props.category);
-    const params = props.params;
-    const judulnya = props.judul;
-    const idnya = props.id;
-    return (
-        <>
-            <div className="judul_view_more">
-                <h3>{props.judul}</h3>
-                <Link
-                    to={{
-                        pathname: `/${props.category}/list/${props.type}`,
-                        state: {
-                            params,
-                            judulnya,
-                            idnya,
-                        },
-                    }}
-                >
-                    <ButtonIconView className="icon_small">
-                        View More
-                    </ButtonIconView>
-                </Link>
-            </div>
-
-            <div className="movie-list">
-                <Swiper grabCursor={true} spaceBetween={20} slidesPerView={8}>
-                    {items.slice(0, 1).map((item, i) => (
-                        <SwiperSlide key={i}>
-                            {props.category === "movie" ? (
-                                <MovieCard
-                                    className="tambahan"
-                                    item={item}
-                                    category={props.category}
-                                />
-                            ) : (
-                                <TvCard
-                                    className="tambahan"
-                                    item={item}
-                                    category={props.category}
-                                />
-                            )}
-                        </SwiperSlide>
-                    ))}
-                    {items.slice(1, 19).map((item, i) => (
-                        <SwiperSlide key={i}>
-                            {props.category === "movie" ? (
-                                <MovieCard
-                                    className="card_slide"
-                                    item={item}
-                                    category={props.category}
-                                />
-                            ) : (
-                                <TvCard
-                                    className="card_slide"
-                                    item={item}
-                                    category={props.category}
-                                />
-                            )}
-                        </SwiperSlide>
-                    ))}
-                    {items.slice(19, 20).map((item, i) => (
-                        <SwiperSlide key={i}>
-                            {props.category === "movie" ? (
-                                <MovieCard
-                                    className="tambahan_kanan"
-                                    item={item}
-                                    category={props.category}
-                                />
-                            ) : (
-                                <TvCard
-                                    className="tambahan_kanan"
-                                    item={item}
-                                    category={props.category}
-                                />
-                            )}
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
-            </div>
-        </>
-    );
-};
-
-MovieView.propTypes = {
     category: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     params: PropTypes.object.isRequired,

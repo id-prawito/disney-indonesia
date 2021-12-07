@@ -125,3 +125,16 @@
         color: #111;
     }
 }
+
+.outline_icon_link {
+    display: flex;
+    border: 1px solid rgba(255, 255, 255, 1);
+    background-color: transparent;
+    gap: 10px;
+    height: 100%;
+
+    &:hover {
+        background-color: rgb(199, 199, 199);
+        color: #111;
+    }
+}

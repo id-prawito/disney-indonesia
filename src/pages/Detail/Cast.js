@@ -5,6 +5,7 @@ import SwiperCore, { Autoplay } from "swiper";
 import tmdbApi from "../../services/tmdbApi";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import nothing from "../../assets/images/images_not-found.png";
 import "./detail.scss";
 
 const Cast = (props) => {
@@ -36,11 +37,9 @@ const Cast = (props) => {
                 >
                     {casts.slice(0, 1).map((item, i) => (
                         <SwiperSlide key={i}>
-                            <div className={`cast__movie tambahan_cast`}>
+                            <div className="cast__movie tambahan_cast">
                                 {item.profile_path === null ? (
-                                    <div className="text_cats">
-                                        Gambar tidak ada
-                                    </div>
+                                    <img src={nothing} alt="image_not-found" />
                                 ) : (
                                     <Link to={`/${category}/person/${item.id}`}>
                                         <img
@@ -57,11 +56,9 @@ const Cast = (props) => {
                     ))}
                     {casts.slice(1, casts.length - 1).map((item, i) => (
                         <SwiperSlide key={i}>
-                            <div className={`cast__movie card-slide`}>
+                            <div className="cast__movie card-slide">
                                 {item.profile_path === null ? (
-                                    <div className="text_cats">
-                                        Gambar tidak ada
-                                    </div>
+                                    <img src={nothing} alt="image_not-found" />
                                 ) : (
                                     <Link to={`/${category}/person/${item.id}`}>
                                         <img
@@ -78,11 +75,9 @@ const Cast = (props) => {
                     ))}
                     {casts.slice(casts.length - 1).map((item, i) => (
                         <SwiperSlide key={i}>
-                            <div className={`cast__movie tambahan_cast_kanan`}>
+                            <div className="cast__movie tambahan_cast_kanan">
                                 {item.profile_path === null ? (
-                                    <div className="text_cats">
-                                        Gambar tidak ada
-                                    </div>
+                                    <img src={nothing} alt="image_not-found" />
                                 ) : (
                                     <Link to={`/${category}/person/${item.id}`}>
                                         <img

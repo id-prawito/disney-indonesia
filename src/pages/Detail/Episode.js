@@ -23,7 +23,6 @@ const Episode = (props) => {
         };
         getEpisode();
     }, [category, props.id, season]);
-    console.log(episode);
 
     return (
         <div className="container_episode">
@@ -61,7 +60,6 @@ const Episodenya = (props) => {
                                     alt="gambarnya"
                                 />
                             )}
-                            <div className="detailss"></div>
                         </div>
                         <div className="keterangannya">
                             <div className="text_judul_episode">

@@ -5,12 +5,12 @@
 }
 
 .screen_item {
-    width: 100%;
-    height: 1000px;
     position: relative;
+    background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-repeat: no-repeat;
+    height: 1000px;
+    width: 100%;
 
     &::before {
         content: "";
@@ -25,8 +25,8 @@
     &::after {
         content: "";
         position: absolute;
-        bottom: 0;
         left: 0;
+        bottom: 0;
         width: 100%;
         height: 400px;
         background-image: linear-gradient(to top, $background-color, rgba(#000, 0));
@@ -42,20 +42,20 @@
     &__bungkus {
         display: flex;
         flex-direction: row;
-        gap: 40px;
-        width: 640px;
         max-height: 100%;
+        width: 640px;
+        gap: 40px;
     }
 
     &_poster {
-        max-width: 320px;
-        border-radius: 10px;
-        overflow: hidden;
-        cursor: pointer;
         display: flex;
         justify-self: center;
         align-items: center;
         text-decoration: none;
+        border-radius: 10px;
+        max-width: 320px;
+        overflow: hidden;
+        cursor: pointer;
         z-index: 1;
 
         img {
@@ -64,16 +64,17 @@
     }
 
     &_info {
-        width: 100%;
         display: flex;
-        flex-direction: column;
-        gap: 20px;
         justify-content: space-between;
+        flex-direction: column;
+        width: 100%;
         z-index: 1;
+        gap: 20px;
 
         .btns {
             display: flex;
             justify-content: flex-start;
+            align-items: center;
             flex-direction: row;
             gap: 20px;
             z-index: 1;
@@ -85,45 +86,6 @@
         flex-direction: column;
         gap: 20px;
 
-        .card_list_movie {
-            gap: 30px;
-            display: flex;
-            flex-direction: column;
-
-            .cast_list {
-                .swiper-slide {
-                    width: 45%;
-                }
-            }
-
-            .cast {
-                font-size: 14px;
-                font-weight: 600;
-                color: #fff;
-            }
-        }
-
-        .card_movie {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: rgba($color: $background-color, $alpha: 0.7);
-            border-radius: 5px;
-        }
-
-        .overview {
-            font-size: 16px;
-            line-height: 30px;
-            font-weight: 400;
-            text-align: justify;
-            width: 100%;
-        }
-
-        .title {
-            font-size: 45px;
-            z-index: 2;
-        }
-
         .images_title {
             z-index: 0;
             max-width: 650px;
@@ -132,45 +94,14 @@
             align-items: center;
             max-height: 240px;
 
+            .text_loading {
+                font-size: 16px;
+                color: rgb(175, 175, 175);
+                font-weight: 500;
+            }
+
             img {
                 height: 100%;
-            }
-        }
-
-        .genre {
-            display: grid;
-            grid-template-columns: repeat(3, auto);
-            gap: 20px;
-            justify-content: space-between;
-
-
-            &_item__content {
-                display: flex;
-                background: rgb(255, 255, 255, 0.4);
-                border-radius: 8px;
-                justify-content: center;
-                align-items: center;
-                height: 30px;
-                color: rgb(34, 34, 34);
-                font-size: 14px;
-                font-weight: 500;
-            }
-
-            &_item__content_p {
-                display: inline-block;
-                font-size: 12px;
-                font-weight: 500;
-                color: #000;
-                padding-right: 14px;
-                padding-left: 14px;
-
-                &_text {
-                    display: inline;
-                    font-size: 13px;
-                    margin-left: 3px;
-                    color: #000;
-                }
-
             }
         }
 
@@ -180,10 +111,6 @@
             gap: 10px;
             justify-content: flex-start;
             align-items: center;
-
-            .year {
-                font-size: 12px;
-            }
 
             &_item__content {
                 display: flex;
@@ -200,21 +127,16 @@
                 text-transform: uppercase;
             }
 
-            &_item__content_p {
-                display: inline-block;
+            .year {
                 font-size: 12px;
-                font-weight: 600;
-                color: #fff;
-                padding-right: 14px;
-                padding-left: 14px;
-
-                &_text {
-                    display: inline;
-                    font-size: 13px;
-                    margin-left: 3px;
-                    color: #000;
-                }
             }
+
+        }
+
+        .text_judul {
+            font-size: 14px;
+            font-weight: 500;
+            color: #fff;
         }
 
         .genre_list {
@@ -223,10 +145,6 @@
             gap: 10px;
             justify-content: flex-start;
             align-items: center;
-
-            .year {
-                font-size: 14px;
-            }
 
             .text_genres {
                 font-size: 12px;
@@ -269,6 +187,65 @@
             }
         }
 
+        .genre {
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            gap: 20px;
+            justify-content: space-between;
+
+
+            &_item__content {
+                display: flex;
+                background: rgb(255, 255, 255, 0.4);
+                border-radius: 8px;
+                justify-content: center;
+                align-items: center;
+                height: 30px;
+                color: rgb(34, 34, 34);
+                font-size: 14px;
+                font-weight: 500;
+            }
+        }
+
+        .card_list_movie {
+            gap: 30px;
+            display: flex;
+            flex-direction: column;
+
+            .cast_list {
+                .swiper-slide {
+                    width: 45%;
+                }
+            }
+
+            .cast {
+                font-size: 14px;
+                font-weight: 600;
+                color: #fff;
+            }
+        }
+
+        .card_movie {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba($color: $background-color, $alpha: 0.7);
+            border-radius: 5px;
+        }
+
+        .overview {
+            font-size: 14px;
+            line-height: 30px;
+            font-weight: 400;
+            text-align: justify;
+            width: 100%;
+        }
+
+        .title {
+            font-size: 45px;
+            z-index: 2;
+        }
+
         .title,
         .overview,
         .genre,
@@ -283,33 +260,6 @@
 .modal__content {
     margin: auto;
 }
-
-.casts {
-    display: grid;
-    // grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-    gap: 10px;
-
-    &__item {
-
-        &__not_found {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 12px;
-        }
-
-        &__img {
-            padding-top: 160px;
-            background-size: cover;
-            margin-bottom: 0.5rem;
-        }
-
-        &__name {
-            font-size: 0.8rem;
-        }
-    }
-}
-
 
 .container_ini {
     margin: auto;
@@ -331,221 +281,6 @@
     gap: 5px;
     display: flex;
     flex-direction: column;
-
-    .card_list_movie {
-        display: flex;
-        flex-direction: column;
-    }
-}
-
-.cast_list {
-
-    .swiper-wrapper {
-        width: 320px;
-    }
-
-    .swiper-slide {
-        width: 15%;
-    }
-}
-
-
-.cast__movie {
-    position: relative;
-    background-position: top;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 5px;
-    margin-bottom: 1.2rem;
-    margin-top: 1.2rem;
-    height: 40%;
-    transition: 0.5s ease-in-out;
-
-    &:hover {
-        transform: scale(1.23);
-        z-index: 4;
-        transition: .5s ease-in-out;
-    }
-
-    img {
-        border-radius: 5px;
-        width: 120px;
-    }
-}
-
-.tambahan_cast {
-    &:hover {
-        transform: scale3d(1.23, 1.23, 1) translate3d(11%, 0, 0) perspective(500px);
-        z-index: 4;
-        transition: .5s ease-in-out;
-    }
-}
-
-.tambahan_cast_kanan {
-    &:hover {
-        transform: scale3d(1.23, 1.23, 1) translate3d(-12%, 0, 0) perspective(500px);
-        z-index: 4;
-        transition: .5s ease-in-out;
-    }
-}
-
-.text_cats {
-    font-size: 9px;
-    color: rgb(206, 206, 206);
-    text-align: center;
-    margin: auto;
-    font-weight: 500;
-}
-
-.video {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.video_grid {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    gap: 20px;
-    row-gap: 40px;
-}
-
-
-.text_video {
-    font-size: 18px;
-    font-weight: 600;
-    width: 500px;
-    height: 30px;
-}
-
-.jumlah_season {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    height: 100%;
-}
-
-.text_season {
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.card_episode {
-    background-color: #fff;
-    height: 120px;
-    width: 100%;
-    border-radius: 5px;
-}
-
-.coba_episode {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.container_episode {
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
-}
-
-.card {
-    height: 100%;
-}
-
-.episode_grid {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    gap: 20px;
-}
-
-.grid_card {
-    border-radius: 5px;
-    background-color: rgba($color: #000000, $alpha: 0.4);
-    display: grid;
-    flex-direction: row;
-    grid-template-columns: 40% 60%;
-    transition: .3s ease-in-out;
-
-    &:hover {
-        background-color: rgba($color: #000000, $alpha: 0.2);
-        cursor: pointer;
-        transition: .3s ease-in-out;
-        z-index: 4;
-
-        .gambarnya {
-            transform: scale(1.03);
-            transition: .3s ease-in-out;
-        }
-    }
-
-}
-
-.gambarnya {
-    height: 100%;
-    border-radius: 5px;
-    position: relative;
-    z-index: -1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    img {
-        border-radius: 5px;
-        height: 100%;
-        position: relative;
-        z-index: -1;
-
-    }
-}
-
-.detailss {
-    &:hover {
-        opacity: 1;
-        transition: .3s ease-in;
-    }
-}
-
-.keterangannya {
-    padding: 20px;
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
-}
-
-.text_judul_episode {
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.text_keterangan {
-    display: -webkit-box;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 14px;
-}
-
-.class_search {
-    display: grid;
-    grid-template-columns: repeat(8, auto);
-    gap: 10px;
-
-}
-
-.class_genres {
-    display: grid;
-    grid-template-columns: repeat(8, auto);
-    gap: 10px;
-}
-
-.class_castmovie {
-    display: grid;
-    grid-template-columns: repeat(8, auto);
-    gap: 10px;
 }
 
 .movie-search {
@@ -561,8 +296,35 @@
     margin-bottom: 14px;
 }
 
+.cast_list {
+    .swiper-wrapper {
+        width: 320px;
+    }
 
+    .swiper-slide {
+        width: 15%;
+    }
+}
 
+.class {
+    &_search {
+        display: grid;
+        grid-template-columns: repeat(8, auto);
+        gap: 10px;
+    }
+
+    &_genres {
+        display: grid;
+        grid-template-columns: repeat(8, auto);
+        gap: 10px;
+    }
+
+    &_castmovie {
+        display: grid;
+        grid-template-columns: repeat(8, auto);
+        gap: 10px;
+    }
+}
 
 
 .castnya {
@@ -598,12 +360,10 @@
         cursor: pointer;
         z-index: 1;
 
-
         img {
             transform: scale(1);
             transition: transform 0.7s ease;
         }
-
     }
 
     &__info {
@@ -732,3 +492,287 @@
         }
     }
 }
+
+// CSS untuk Episode
+
+.coba_episode {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container_episode {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+
+    .card {
+        height: 100%;
+    }
+}
+
+// End CSS untuk Episode
+
+// CSS untuk Genres Movie and TV
+
+.pembungkus {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .bungkus {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .judul_genres {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .genres_item-card {
+            display: grid;
+            grid-template-columns: repeat(8, auto);
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+            transition: .3s ease-in-out;
+
+            .card_genres {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: rgba($color: #474747, $alpha: 0.6);
+                border-radius: 5px;
+                height: 100px;
+                width: 200px;
+                cursor: pointer;
+                transition: .3s ease-in-out;
+
+                img {
+                    display: block;
+                    height: 100%;
+                    object-fit: cover;
+                    opacity: 1;
+                    transition: opacity 500ms ease-in-out 9s;
+                    width: 100%;
+                    z-index: -1;
+                    top: 0;
+                    border-radius: 5px;
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        height: 100%;
+                        width: 100%;
+                        left: 0;
+                        top: 0;
+                        background-color: rgba($color: #000000, $alpha: 0.6);
+                        transition: opacity 500ms ease-in-out 9s;
+                    }
+                }
+
+                &:hover {
+                    background-color: rgba($color: #646464, $alpha: 0.6);
+                    transform: scale(1.04);
+                    transition: .4s ease-in-out;
+                    position: relative;
+                    z-index: 6;
+                }
+
+                .text_genres {
+                    font-size: 16px;
+                    font-weight: 500;
+                    text-transform: capitalize;
+                    width: 100px;
+                    text-align: center;
+                    position: absolute;
+                    z-index: 2;
+                }
+            }
+        }
+    }
+}
+
+// End CSS untuk Genres Movie and TV
+
+// CSS untuk Watchlist
+
+.watchlist {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    gap: 10px;
+    background-color: rgba(77, 77, 77, 0.4);
+    border-radius: 5px;
+    padding: 0px 20px;
+
+    .btn-watchlist {
+        text-decoration: none;
+        outline: none;
+    }
+
+    .text_watchlist {
+        font-size: 12px;
+        font-weight: 500;
+    }
+}
+
+// End CSS untuk Watchlist
+
+// CSS untuk Cast.js
+.cast__movie {
+    position: relative;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 5px;
+    margin-bottom: 1.2rem;
+    margin-top: 1.2rem;
+    height: 40%;
+    transition: 0.5s ease-in-out;
+
+    &:hover {
+        transform: scale(1.23);
+        z-index: 4;
+        transition: .5s ease-in-out;
+    }
+
+    img {
+        border-radius: 5px;
+        width: 120px;
+    }
+
+    .text_cats {
+        font-size: 9px;
+        color: rgb(206, 206, 206);
+        text-align: center;
+        margin: auto;
+        font-weight: 500;
+    }
+}
+
+.tambahan_cast {
+    &:hover {
+        transform: scale3d(1.23, 1.23, 1) translate3d(11%, 0, 0) perspective(500px);
+        z-index: 4;
+        transition: .5s ease-in-out;
+    }
+
+    &_kanan {
+        &:hover {
+            transform: scale3d(1.23, 1.23, 1) translate3d(-12%, 0, 0) perspective(500px);
+            z-index: 4;
+            transition: .5s ease-in-out;
+        }
+    }
+}
+
+// End CSS untuk Cast.js
+
+// CSS untuk VideoList.js
+.video {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .text_video {
+        font-size: 18px;
+        font-weight: 600;
+        width: 500px;
+        height: 30px;
+    }
+
+    &_grid {
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        gap: 20px;
+        row-gap: 40px;
+    }
+}
+
+// End CSS untuk VideoList.js
+
+
+// CSS untuk Episode.js
+.jumlah_season {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+
+    .text_season {
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .episode_grid {
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        gap: 20px;
+
+        .grid_card {
+            border-radius: 5px;
+            background-color: rgba($color: #000000, $alpha: 0.4);
+            display: grid;
+            flex-direction: row;
+            grid-template-columns: 40% 60%;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                background-color: rgba($color: #000000, $alpha: 0.2);
+                cursor: pointer;
+                transition: .3s ease-in-out;
+                z-index: 4;
+
+                .gambarnya {
+                    transform: scale(1.03);
+                    transition: .3s ease-in-out;
+                }
+            }
+
+            .gambarnya {
+                height: 100%;
+                border-radius: 5px;
+                position: relative;
+                z-index: -1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    border-radius: 5px;
+                    height: 100%;
+                    position: relative;
+                    z-index: -1;
+                }
+            }
+
+            .keterangannya {
+                padding: 20px;
+                display: flex;
+                gap: 20px;
+                flex-direction: column;
+
+                .text_judul_episode {
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+
+                .text_keterangan {
+                    display: -webkit-box;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 14px;
+                }
+            }
+        }
+    }
+}
+
+// End CSS untuk Episode.js

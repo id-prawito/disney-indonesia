@@ -97,7 +97,7 @@ const Search = () => {
             {page < totalPage ? (
                 <div
                     className="movie-grid__loadmore"
-                    style={{ margin: "auto" }}
+                    style={{ margin: "auto", marginTop: "20px" }}
                 >
                     <ButtonIcon className="outline_default" onClick={loadMore}>
                         Load more

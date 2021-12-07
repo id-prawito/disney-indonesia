@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useContext } from "react";
-import { FaHome, FaPlus, FaStar } from "react-icons/fa";
+import { FaHome, FaPlus, FaDice } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import logoProfile from "../../assets/images/pikachu.png";
 import { MdMovie, MdVideoLibrary } from "react-icons/md";
@@ -74,12 +74,12 @@ const Header = () => {
                                 </NavLink>
                             </div>
                             <div className="header__item">
-                                <FaStar />
+                                <FaDice />
                                 <NavLink
-                                    to="/original"
+                                    to="/genres"
                                     className="header__item-link"
                                 >
-                                    Originals
+                                    Genres
                                 </NavLink>
                             </div>
                         </div>

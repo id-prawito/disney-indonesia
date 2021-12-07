@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import MovieCard, { TvCard } from "../components/MovieCard";
+import { MovieCardGrid, TvCardGrid } from "../components/MovieCard";
 import { GlobalContext } from "../config/GlobalState";
 
 const Watchlist = () => {
@@ -8,26 +8,32 @@ const Watchlist = () => {
 
     return (
         <>
-            <div className="container_movie">
-                <div className="class_genres">
-                    {watchlist.map((item, i) => (
-                        <MovieCard
-                            key={i}
-                            className="card_slide"
-                            item={item}
-                            category="movie"
-                        />
-                    ))}
+            <div className="container_movie" style={{ gap: 20 }}>
+                <div className="pembungkus">
+                    <h4>Watchlist Movie</h4>
+                    <div className="class_genres">
+                        {watchlist.map((item, i) => (
+                            <MovieCardGrid
+                                key={i}
+                                className="card_slide"
+                                item={item}
+                                category="movie"
+                            />
+                        ))}
+                    </div>
                 </div>
-                <div className="class_genres">
-                    {watchlistTv.map((item, i) => (
-                        <TvCard
-                            key={i}
-                            className="card_slide"
-                            item={item}
-                            category="tv"
-                        />
-                    ))}
+                <div className="pembungkus">
+                    <h4>Watchlist TV</h4>
+                    <div className="class_genres">
+                        {watchlistTv.map((item, i) => (
+                            <TvCardGrid
+                                key={i}
+                                className="card_slide"
+                                item={item}
+                                category="tv"
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
         </>

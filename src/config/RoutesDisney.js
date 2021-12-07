@@ -7,6 +7,7 @@ import Genres from "../pages/Genres";
 import Search from "../pages/Search";
 import Home from "../pages/Home";
 import List from "../pages/List";
+import Card from "../pages/Card";
 
 const RoutesDisney = () => {
     return (
@@ -15,6 +16,7 @@ const RoutesDisney = () => {
             <Route exact path="/:category/search/:keyword" component={Search} />
             <Route exact path="/:category/person/:id" component={CastDetail} />
             <Route exact path="/:category/list/:type" component={List} />
+            <Route exact path="/channels/card/:judul" component={Card} />
             <Route exact path="/:category/:id" component={Detail} />
             <Route exact path="/:category" component={Catalog} />
             <Route

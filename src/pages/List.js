@@ -132,7 +132,7 @@ export const ListMovie = () => {
             {page < totalPage ? (
                 <div
                     className="movie-grid__loadmore"
-                    style={{ margin: "auto" }}
+                    style={{ margin: "auto", marginTop: "20px" }}
                 >
                     <ButtonIcon className="outline_default" onClick={loadMore}>
                         Load more
@@ -226,7 +226,7 @@ export const ListTV = () => {
 
     return (
         <div className="container_movie">
-            <h3>{judulnya}</h3>
+            <div className="judul_list">{judulnya}</div>
             <div className="class_genres">
                 {items.map((item, i) => (
                     <TvCardGrid key={i} item={item} category={category} />
@@ -235,7 +235,7 @@ export const ListTV = () => {
             {page < totalPage ? (
                 <div
                     className="movie-grid__loadmore"
-                    style={{ margin: "auto" }}
+                    style={{ margin: "auto", marginTop: "20px" }}
                 >
                     <ButtonIcon className="outline_default" onClick={loadMore}>
                         Load more
@@ -292,6 +292,8 @@ export const ListDiscover = () => {
                 ...parameter,
             };
 
+            console.log(params);
+
             switch (category) {
                 case category:
                     response = await tmdbApi.getNewMovies(type, {
@@ -339,7 +341,7 @@ export const ListDiscover = () => {
             {page < totalPage ? (
                 <div
                     className="movie-grid__loadmore"
-                    style={{ margin: "auto" }}
+                    style={{ margin: "auto", marginTop: "20px" }}
                 >
                     <ButtonIcon className="outline_default" onClick={loadMore}>
                         Load more
@@ -478,7 +480,7 @@ export const ListSimilar = () => {
             {page < totalPage ? (
                 <div
                     className="movie-grid__loadmore"
-                    style={{ margin: "auto" }}
+                    style={{ margin: "auto", marginTop: "20px" }}
                 >
                     <ButtonIcon className="outline_default" onClick={loadMore}>
                         Load more
