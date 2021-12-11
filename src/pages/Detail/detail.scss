@@ -2,6 +2,16 @@
 
 .detail_screen {
     margin-top: -90px;
+
+    @include smartphones {
+        // height: 180vh;
+    }
+}
+
+.container_detail {
+    padding: 20px 35px;
+    margin: auto;
+    width: 100%;
 }
 
 .screen_item {
@@ -11,6 +21,11 @@
     background-size: cover;
     height: 1000px;
     width: 100%;
+
+    @include smartphones {
+        height: 100%;
+    }
+
 
     &::before {
         content: "";
@@ -37,6 +52,10 @@
         justify-content: center;
         flex-direction: column;
         height: 100%;
+
+        @include smartphones {
+            padding-top: 100px;
+        }
     }
 
     &__bungkus {
@@ -45,6 +64,14 @@
         max-height: 100%;
         width: 640px;
         gap: 40px;
+
+        @include smartphones {
+            width: 100%;
+        }
+
+        @include ipads {
+            width: 100%;
+        }
     }
 
     &_poster {
@@ -78,6 +105,24 @@
             flex-direction: row;
             gap: 20px;
             z-index: 1;
+
+            @include smartphones {
+                display: grid;
+                grid-template-columns: repeat(4, auto);
+                justify-content: space-between;
+                gap: 10px;
+            }
+
+            @include ipads {
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+                justify-content: flex-start;
+                gap: 20px;
+            }
+
+            @media only screen and (min-device-width : 420px) and (max-device-width : 480px) {
+                justify-content: flex-start;
+            }
         }
     }
 
@@ -85,6 +130,11 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+
+        @include smartphones {
+            gap: 15px;
+        }
+
 
         .images_title {
             z-index: 0;
@@ -103,34 +153,59 @@
             img {
                 height: 100%;
             }
+
+            @include smartphones {
+                display: initial;
+                max-height: 140px;
+            }
         }
 
-        .genre_item {
-            display: grid;
-            grid-template-columns: repeat(6, auto);
-            gap: 10px;
-            justify-content: flex-start;
+        .genre_bungkus {
+            display: flex;
+            flex-direction: row;
             align-items: center;
 
-            &_item__content {
-                display: flex;
-                background: rgba($color: $background-color, $alpha: 0.7);
-                border-radius: 8px;
-                gap: 6px;
-                justify-content: center;
+            @include smartphones {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .genre_item {
+                display: grid;
+                grid-template-columns: repeat(4, auto);
+                gap: 10px;
+                justify-content: flex-start;
                 align-items: center;
-                height: 30px;
-                color: #fff;
-                font-size: 14px;
-                font-weight: 600;
-                padding: 8px;
-                text-transform: uppercase;
+
+                &_item__content {
+                    display: flex;
+                    background: rgba($color: $background-color, $alpha: 0.7);
+                    border-radius: 8px;
+                    gap: 6px;
+                    justify-content: center;
+                    align-items: center;
+                    height: 30px;
+                    color: #fff;
+                    font-size: 14px;
+                    font-weight: 600;
+                    padding: 8px;
+                    text-transform: uppercase;
+
+                    @include smartphones {
+                        background-color: rgba(26, 29, 41, 0.7);
+                        font-size: 12px;
+                    }
+                }
             }
 
             .year {
                 font-size: 12px;
-            }
 
+                @include smartphones {
+                    font-size: 10px;
+                }
+            }
         }
 
         .text_judul {
@@ -222,6 +297,10 @@
                 font-size: 14px;
                 font-weight: 600;
                 color: #fff;
+
+                @include smartphones {
+                    font-size: 12px;
+                }
             }
         }
 
@@ -239,6 +318,11 @@
             font-weight: 400;
             text-align: justify;
             width: 100%;
+
+            @include smartphones {
+                font-size: 12px;
+                line-height: 20px;
+            }
         }
 
         .title {
@@ -255,6 +339,19 @@
         }
     }
 
+}
+
+.text_watch,
+.text_watchlist {
+    @include smartphones {
+        display: none;
+    }
+}
+
+.text_watchlist {
+    @include ipads {
+        display: none;
+    }
 }
 
 .modal__content {
@@ -617,6 +714,19 @@
         font-size: 12px;
         font-weight: 500;
     }
+
+    @include smartphones {
+        padding: 0px 0px;
+        height: 35px;
+        width: 38px;
+    }
+
+    @include ipads {
+        padding: 0px 0px;
+        height: 100%;
+        width: 65px;
+        border: 0.2px solid #fff;
+    }
 }
 
 // End CSS untuk Watchlist
@@ -669,6 +779,14 @@
     }
 }
 
+
+@include smartphones {
+    .swiper-container {
+        width: 100%;
+    }
+}
+
+
 // End CSS untuk Cast.js
 
 // CSS untuk VideoList.js
@@ -680,8 +798,20 @@
     .text_video {
         font-size: 18px;
         font-weight: 600;
-        width: 500px;
-        height: 30px;
+
+        @include smartphones {
+            font-size: 14px;
+        }
+
+        @include ipads {
+            font-size: 14px;
+            height: 30px;
+        }
+
+        @include laptop {
+            font-size: 16px;
+            height: 30px;
+        }
     }
 
     &_grid {
@@ -689,6 +819,25 @@
         grid-template-columns: repeat(3, auto);
         gap: 20px;
         row-gap: 40px;
+
+        @include smartphones {
+            grid-template-columns: repeat(1, auto);
+            row-gap: 20px;
+        }
+
+        @include ipads {
+            grid-template-columns: repeat(2, auto);
+            row-gap: 20px;
+        }
+
+        @include laptop {
+            grid-template-columns: repeat(2, auto);
+            row-gap: 20px;
+        }
+    }
+
+    @include smartphones {
+        gap: 10px;
     }
 }
 
@@ -776,3 +925,28 @@
 }
 
 // End CSS untuk Episode.js
+
+.cast-not_found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    background: #192133;
+    text-transform: capitalize;
+    border-radius: 4px;
+    overflow: hidden;
+    max-width: 70px;
+    height: 100px;
+
+    transition: 0.5s ease-in-out;
+
+    .text {
+        font-size: 8px;
+        font-weight: 500;
+        width: 45px;
+        text-align: center;
+    }
+}

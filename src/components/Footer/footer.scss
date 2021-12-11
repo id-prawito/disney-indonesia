@@ -7,7 +7,7 @@
         align-items: center;
         background: #090B13;
         position: relative;
-        height: 310px;
+        height: 100%;
         bottom: 0;
     }
 
@@ -19,6 +19,11 @@
         padding: 20px 35px;
         width: 100%;
         gap: 40px;
+
+        @include smartphones {
+            gap: 20px;
+            padding: 20px 35px 60px 35px;
+        }
     }
 
     &__logo {
@@ -55,6 +60,12 @@
         font-size: 12px;
         width: 450px;
 
+        @include smartphones {
+            width: 100%;
+            font-size: 10px;
+        }
+
+
     }
 
     &__content-copy {
@@ -69,6 +80,12 @@
         justify-content: center;
         flex-direction: row;
         gap: 20px;
+
+        @include smartphones {
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+        }
+
     }
 
     &__content-social {

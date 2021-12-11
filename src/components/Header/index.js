@@ -35,24 +35,73 @@ const Header = () => {
             <div ref={headerRef} className="header__disney">
                 <div className="header__container">
                     <div className="header__logo_link">
-                        <Link to="/" className="header__logo">
-                            <img
-                                alt="logo_header"
-                                src={logoNav}
-                                className="logo__img"
-                            />
-                        </Link>
                         <div className="header__menu">
                             <div className="header__item">
-                                <FaHome />
+                                {window.innerWidth > 1224 ? (
+                                    <NavLink
+                                        to="/"
+                                        exact={true}
+                                        className="header__logo"
+                                    >
+                                        <img
+                                            alt="logo_header"
+                                            src={logoNav}
+                                            className="logo__img"
+                                        />
+                                    </NavLink>
+                                ) : (
+                                    <>
+                                        <FaHome />
+                                        <NavLink
+                                            to="/"
+                                            exact={true}
+                                            className="header__item-link"
+                                        >
+                                            <div className="text_nav">Home</div>
+                                        </NavLink>
+                                    </>
+                                )}
+                            </div>
+                            <div className="header__item">
+                                <MdMovie />
                                 <NavLink
-                                    exact={true}
-                                    to="/"
-                                    activeClassName="active"
+                                    to="/movie"
                                     className="header__item-link"
                                 >
-                                    Home
+                                    <div className="text_nav">Movies</div>
                                 </NavLink>
+                            </div>
+                            <div className="header__item">
+                                {window.innerWidth > 1224 ? (
+                                    <>
+                                        <MdVideoLibrary />
+                                        <NavLink
+                                            to="/"
+                                            activeClassName="active"
+                                            className="header__item-link"
+                                            exact={true}
+                                        >
+                                            <div className="text_nav">
+                                                Disney+
+                                            </div>
+                                        </NavLink>
+                                    </>
+                                ) : (
+                                    <>
+                                        <NavLink
+                                            to="/"
+                                            activeClassName="active"
+                                            className="header__item-link"
+                                            exact={true}
+                                        >
+                                            <img
+                                                alt="logo_header"
+                                                src={logoNav}
+                                                className="logo__img"
+                                            />
+                                        </NavLink>
+                                    </>
+                                )}
                             </div>
                             <div className="header__item">
                                 <MdVideoLibrary />
@@ -61,16 +110,7 @@ const Header = () => {
                                     activeClassName="active"
                                     className="header__item-link"
                                 >
-                                    Series
-                                </NavLink>
-                            </div>
-                            <div className="header__item">
-                                <MdMovie />
-                                <NavLink
-                                    to="/movie"
-                                    className="header__item-link"
-                                >
-                                    Movies
+                                    <div className="text_nav">Series</div>
                                 </NavLink>
                             </div>
                             <div className="header__item">
@@ -79,15 +119,15 @@ const Header = () => {
                                     to="/genres"
                                     className="header__item-link"
                                 >
-                                    Genres
+                                    <div className="text_nav">Genres</div>
                                 </NavLink>
                             </div>
                         </div>
                     </div>
                     <div className="header__profile_link">
-                        <div className="header__menu">
+                        <div className="header__menu_watchlist">
                             <Search />
-                            <div className="header__item">
+                            <div className="header__item_watchlist">
                                 <FaPlus />
                                 <NavLink
                                     to="/watchlist"

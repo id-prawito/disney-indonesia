@@ -40,6 +40,10 @@
         background-image: linear-gradient(to bottom, rgba(4, 8, 15, 0), rgba(37, 40, 53, 0.98), #252835 70%);
         transition: .3s ease-in-out;
 
+        @include smartphones {
+            display: none;
+        }
+
         &:hover {
             transition: .3s ease-in;
             opacity: 1;

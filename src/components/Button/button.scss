@@ -13,6 +13,11 @@
     font-size: 16px;
     cursor: pointer;
     border: none;
+
+    @include smartphones {
+        padding: 10px 12px;
+        font-size: 10px;
+    }
 }
 
 
@@ -39,6 +44,10 @@
     &:hover {
         background-color: rgba($color: #ff4d4d, $alpha: 0.8);
     }
+
+    @include smartphones {
+        padding: 4px 8px;
+    }
 }
 
 .icon_small_transparent {
@@ -62,6 +71,10 @@
 
     &:hover {
         background-color: rgba($color: #474747, $alpha: 0.6);
+    }
+
+    @include smartphones {
+        font-size: 12px;
     }
 }
 
@@ -87,6 +100,10 @@
         background-color: rgb(199, 199, 199);
         border: 1px solid rgb(199, 199, 199);
     }
+
+    @include smartphones {
+        gap: 4px;
+    }
 }
 
 .secondary_icon {
@@ -99,6 +116,10 @@
     &:hover {
         background-color: rgb(199, 199, 199);
         border: 1px solid rgb(199, 199, 199);
+    }
+
+    @include smartphones {
+        gap: 4px;
     }
 }
 
@@ -124,6 +145,11 @@
         background-color: rgb(199, 199, 199);
         color: #111;
     }
+
+    @include smartphones {
+        gap: 4px;
+    }
+
 }
 
 .outline_icon_link {
@@ -136,5 +162,14 @@
     &:hover {
         background-color: rgb(199, 199, 199);
         color: #111;
+    }
+
+    @include smartphones {
+        width: 38px;
+        margin: auto;
+    }
+
+    @include ipads {
+        width: 65px;
     }
 }

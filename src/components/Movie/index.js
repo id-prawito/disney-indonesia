@@ -173,7 +173,7 @@ export const MovieView = (props) => {
     return (
         <>
             <div className="judul_view_more">
-                <h3>{props.judul}</h3>
+                <div className="text_video">{props.judul}</div>
                 <Link
                     to={{
                         pathname: `/${props.category}/list/${props.type}`,
@@ -185,12 +185,46 @@ export const MovieView = (props) => {
                     }}
                 >
                     <ButtonIconView className="icon_small">
-                        View More
+                        <div className="text_watchlist">View More</div>
                     </ButtonIconView>
                 </Link>
             </div>
             <div className="movie-list">
-                <Swiper grabCursor={true} spaceBetween={20} slidesPerView={8}>
+                <Swiper
+                    grabCursor={true}
+                    spaceBetween={20}
+                    slidesPerView={8}
+                    breakpoints={{
+                        // when window width is >= 320px
+                        320: {
+                            slidesPerView: 3,
+                            spaceBetween: 10,
+                        },
+                        // when window width is >= 480px
+                        480: {
+                            slidesPerView: 4,
+                            spaceBetween: 10,
+                        },
+
+                        680: {
+                            slidesPerView: 5,
+                            spaceBetween: 10,
+                        },
+                        // when window width is >= 640px
+                        769: {
+                            slidesPerView: 6,
+                            spaceBetween: 10,
+                        },
+                        1024: {
+                            slidesPerView: 6,
+                            spaceBetween: 10,
+                        },
+                        1224: {
+                            slidesPerView: 8,
+                            spaceBetween: 20,
+                        },
+                    }}
+                >
                     {items.slice(0, 1).map((item, i) => (
                         <SwiperSlide key={i}>
                             {props.category === "movie" ? (
@@ -313,7 +347,7 @@ export const MovieRecomendations = (props) => {
             {items.length === 0 ? (
                 <>
                     <div className="judul_view_more">
-                        <h3>{props.judul}</h3>
+                        <div className="text_video">{props.judul}</div>
                     </div>
                     <div className="movie-card-not_found">
                         <h4>{props.category} Not Found</h4>
@@ -322,7 +356,7 @@ export const MovieRecomendations = (props) => {
             ) : (
                 <>
                     <div className="judul_view_more">
-                        <h3>{props.judul}</h3>
+                        <div className="text_video">{props.judul}</div>
                         <Link
                             to={{
                                 pathname: `/${props.category}/list/${props.type}`,
@@ -334,7 +368,7 @@ export const MovieRecomendations = (props) => {
                             }}
                         >
                             <ButtonIconView className="icon_small">
-                                View More
+                                <div className="text_watchlist">View More</div>
                             </ButtonIconView>
                         </Link>
                     </div>
@@ -343,6 +377,35 @@ export const MovieRecomendations = (props) => {
                             grabCursor={true}
                             spaceBetween={20}
                             slidesPerView={8}
+                            breakpoints={{
+                                // when window width is >= 320px
+                                320: {
+                                    slidesPerView: 3,
+                                    spaceBetween: 10,
+                                },
+                                // when window width is >= 480px
+                                481: {
+                                    slidesPerView: 4,
+                                    spaceBetween: 10,
+                                },
+                                680: {
+                                    slidesPerView: 5,
+                                    spaceBetween: 10,
+                                },
+                                // when window width is >= 640px
+                                769: {
+                                    slidesPerView: 6,
+                                    spaceBetween: 10,
+                                },
+                                1024: {
+                                    slidesPerView: 6,
+                                    spaceBetween: 10,
+                                },
+                                1224: {
+                                    slidesPerView: 8,
+                                    spaceBetween: 20,
+                                },
+                            }}
                         >
                             {items.slice(0, 1).map((item, i) => (
                                 <SwiperSlide key={i}>

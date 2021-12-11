@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import nothing from "../../assets/images/images_not-found.png";
 import { useParams } from "react-router";
 import apiConfig from "../../services/apiConfig";
 import tmdbApi from "../../services/tmdbApi";
 import CastList from "./CastList";
+
 import {
     FaTwitter,
     FaFacebookF,
@@ -58,11 +60,15 @@ const CastDetail = () => {
                     <div className="container_movie" style={{ gap: 30 }}>
                         <div className="castnya__bungkus">
                             <div className="castnya__detail">
-                                <img
-                                    style={{ borderRadius: "5px" }}
-                                    alt="poster_path"
-                                    src={gambar}
-                                />
+                                {data.profile_path === null ? (
+                                    <img src={nothing} alt="image_not-found" />
+                                ) : (
+                                    <img
+                                        style={{ borderRadius: "5px" }}
+                                        alt="poster_path"
+                                        src={gambar}
+                                    />
+                                )}
                             </div>
                             <div className="castnya__info">
                                 <div className="info">

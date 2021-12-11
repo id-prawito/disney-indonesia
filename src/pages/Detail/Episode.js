@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import apiConfig from "../../services/apiConfig";
 import tmdbApi from "../../services/tmdbApi";
+import nothing from "../../assets/images/images_not-found-l.png";
 
 const Episode = (props) => {
     const { category } = useParams();
@@ -46,12 +47,7 @@ const Episodenya = (props) => {
                     <div key={i} className="grid_card">
                         <div className="gambarnya">
                             {item_episode.still_path === null ? (
-                                <div
-                                    className="text"
-                                    style={{ fontSize: "8px", margin: "auto " }}
-                                >
-                                    gambarnya tidak ada
-                                </div>
+                                <img src={nothing} alt="image_not-found" />
                             ) : (
                                 <img
                                     src={apiConfig.w500Image(

@@ -34,3 +34,16 @@ Fungsi Movie Grid di Homepage Disney (marvel, dll) || done
 
 Bersihan console.log di try catch                  ||
 
++ Responsive
+  + Detail Screen                                 || mayor: done, minor: --, Movie: done, Series: not yet
+    - Smartphones   = min-width : 320   &   max-width: 480    || done
+    - Ipads         = min-width : 481   &   max-width: 768    || done
+    - Laptop        = min-width : 769   &   max-width: 1024   || done
+    - Laptop_Large  = min-width : 1025  &   max-width: 1224   || done
+    - Large_Screen  = min-width : 1224                        || done
+  + Home Screen                                 || mayor: done, minor: --
+    - Smartphones   = min-width : 320   &   max-width: 480    || done
+    - Ipads         = min-width : 481   &   max-width: 768    || done
+    - Laptop        = min-width : 769   &   max-width: 1024   || done
+    - Laptop_Large  = min-width : 1025  &   max-width: 1224   || done
+    - Large_Screen  = min-width : 1224                        || done

@@ -1,6 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { MovieRecomendations, MovieView } from "../../components/Movie";
-import Button, { ButtonIcon, ButtonIconLain } from "../../components/Button";
+import Button, {
+    ButtonIcon,
+    ButtonIconLain,
+    ButtonIconTrailer,
+} from "../../components/Button";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import image_not from "../../assets/images/not_found_ava.png";
@@ -120,7 +124,7 @@ const DetailScreen = () => {
                             }}
                         >
                             <TrailerModal item={item} />
-                            <div className="screen_item__content container">
+                            <div className="screen_item__content container_detail">
                                 <div className="screen_item__bungkus">
                                     <div className="screen_item_info">
                                         <div className="screen_item_info-bungkus">
@@ -152,40 +156,38 @@ const DetailScreen = () => {
                                             <span className="text_judul">
                                                 {item.title || item.name}
                                             </span>
-                                            <div className="genre_item">
-                                                <div className="genre_item_item__content">
-                                                    <FaAudioDescription
-                                                        fontSize={16}
-                                                    />
-                                                    {item.spoken_languages
-                                                        .length < 1 ? (
-                                                        "EN"
-                                                    ) : (
-                                                        <>
-                                                            {item.spoken_languages ===
-                                                            null ? (
-                                                                <h4>H</h4>
-                                                            ) : (
-                                                                <>
-                                                                    {
-                                                                        item
-                                                                            .spoken_languages[0]
-                                                                            .iso_639_1
-                                                                    }
-                                                                </>
-                                                            )}
-                                                        </>
-                                                    )}
-                                                </div>
-                                                <div className="genre_item_item__content">
-                                                    <FaStar fontSize={14} />
-                                                    {item.vote_average}
-                                                </div>
-                                                <div className="genre_item_item__content">
-                                                    <FaRegClosedCaptioning
-                                                        fontSize={16}
-                                                    />
-                                                    {item.original_language}
+                                            <div className="genre_bungkus">
+                                                <div className="genre_item">
+                                                    <div className="genre_item_item__content">
+                                                        <FaAudioDescription />
+                                                        {item.spoken_languages
+                                                            .length < 1 ? (
+                                                            "EN"
+                                                        ) : (
+                                                            <>
+                                                                {item.spoken_languages ===
+                                                                null ? (
+                                                                    <h4>H</h4>
+                                                                ) : (
+                                                                    <>
+                                                                        {
+                                                                            item
+                                                                                .spoken_languages[0]
+                                                                                .iso_639_1
+                                                                        }
+                                                                    </>
+                                                                )}
+                                                            </>
+                                                        )}
+                                                    </div>
+                                                    <div className="genre_item_item__content">
+                                                        <FaStar />
+                                                        {item.vote_average}
+                                                    </div>
+                                                    <div className="genre_item_item__content">
+                                                        <FaRegClosedCaptioning />
+                                                        {item.original_language}
+                                                    </div>
                                                 </div>
                                                 <div className="year">
                                                     {category === "movie" ? (
@@ -236,14 +238,18 @@ const DetailScreen = () => {
                                                         )
                                                     }
                                                 >
-                                                    Watch Now
+                                                    <div className="text_watch">
+                                                        Watch Now
+                                                    </div>
                                                 </ButtonIcon>
-                                                <ButtonIcon
+                                                <ButtonIconTrailer
                                                     className="outline_icon"
                                                     onClick={setModalActive}
                                                 >
-                                                    Watch Trailer
-                                                </ButtonIcon>
+                                                    <div className="text_watch">
+                                                        Watch Trailer
+                                                    </div>
+                                                </ButtonIconTrailer>
                                                 {item.homepage === "" ? null : (
                                                     <a
                                                         target="_blank"
@@ -389,8 +395,8 @@ const DetailScreen = () => {
                         </div>
                     </div>
                     <div className="container_movie" style={{ gap: 30 }}>
-                        <div className="card_list_movie">
-                            {category === "movie" ? null : (
+                        {category === "movie" ? null : (
+                            <div className="card_list_movie">
                                 <div className="coba_episode">
                                     <h3>TV Season and Episode</h3>
                                     <Episode
@@ -400,8 +406,8 @@ const DetailScreen = () => {
                                         }
                                     ></Episode>
                                 </div>
-                            )}
-                        </div>
+                            </div>
+                        )}
                         <div className="video_grid">
                             <VideoList id={item.id} />
                         </div>

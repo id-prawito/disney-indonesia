@@ -108,48 +108,54 @@ const CastList = (props) => {
                                 Top {itemsTV.length} TV from {judul}
                             </div>
                         </div>
-                        <div className="movie-list">
-                            <Swiper
-                                grabCursor={true}
-                                spaceBetween={20}
-                                slidesPerView={8}
-                            >
-                                {itemsTV.slice(0, 1).map((item, i) => (
-                                    <SwiperSlide key={i}>
-                                        <TvCard
-                                            key={i}
-                                            item={item}
-                                            className="tambahan"
-                                            category="tv"
-                                        />
-                                    </SwiperSlide>
-                                ))}
-                                {itemsTV
-                                    .slice(1, items.length - 1)
-                                    .map((item, i) => (
+                        {itemsTV.length === 0 ? (
+                            <div className="movie-card-not_found">
+                                <h4>TV Not Found</h4>
+                            </div>
+                        ) : (
+                            <div className="movie-list">
+                                <Swiper
+                                    grabCursor={true}
+                                    spaceBetween={20}
+                                    slidesPerView={8}
+                                >
+                                    {itemsTV.slice(0, 1).map((item, i) => (
                                         <SwiperSlide key={i}>
                                             <TvCard
                                                 key={i}
                                                 item={item}
-                                                className="card_slide"
+                                                className="tambahan"
                                                 category="tv"
                                             />
                                         </SwiperSlide>
                                     ))}
-                                {itemsTV
-                                    .slice(items.length - 1, items.length)
-                                    .map((item, i) => (
-                                        <SwiperSlide key={i}>
-                                            <TvCard
-                                                key={i}
-                                                item={item}
-                                                className="tambahan_kanan"
-                                                category="tv"
-                                            />
-                                        </SwiperSlide>
-                                    ))}
-                            </Swiper>
-                        </div>
+                                    {itemsTV
+                                        .slice(1, items.length - 1)
+                                        .map((item, i) => (
+                                            <SwiperSlide key={i}>
+                                                <TvCard
+                                                    key={i}
+                                                    item={item}
+                                                    className="card_slide"
+                                                    category="tv"
+                                                />
+                                            </SwiperSlide>
+                                        ))}
+                                    {itemsTV
+                                        .slice(items.length - 1, items.length)
+                                        .map((item, i) => (
+                                            <SwiperSlide key={i}>
+                                                <TvCard
+                                                    key={i}
+                                                    item={item}
+                                                    className="tambahan_kanan"
+                                                    category="tv"
+                                                />
+                                            </SwiperSlide>
+                                        ))}
+                                </Swiper>
+                            </div>
+                        )}
                     </div>
                 </>
             )}

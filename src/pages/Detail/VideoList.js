@@ -37,7 +37,7 @@ const Video = (props) => {
             <div className="text_video">{item.name}</div>
             <iframe
                 src={`https://www.youtube.com/embed/${item.key}`}
-                style={{ border: "none", borderRadius: "5px" }}
+                style={{ border: "none", borderRadius: "5px", width: "100%" }}
                 ref={iframeRef}
                 title="video"
                 allowFullScreen
