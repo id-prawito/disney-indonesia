@@ -41,7 +41,8 @@ Bersihan console.log di try catch                  ||
     - Laptop        = min-width : 769   &   max-width: 1024   || done
     - Laptop_Large  = min-width : 1025  &   max-width: 1224   || done
     - Large_Screen  = min-width : 1224                        || done
-  + Home Screen                                 || mayor: done, minor: --
+    
+  + Home Screen, Movie Screen, Series Screen                  || mayor: done, minor: --
     - Smartphones   = min-width : 320   &   max-width: 480    || done
     - Ipads         = min-width : 481   &   max-width: 768    || done
     - Laptop        = min-width : 769   &   max-width: 1024   || done

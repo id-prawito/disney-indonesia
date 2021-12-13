@@ -12,6 +12,14 @@
     height: 1000px;
     width: 100%;
 
+    @include smartphones {
+        height: 100%;
+    }
+
+    @include ipads {
+        height: 100%;
+    }
+
     &::before {
         content: "";
         position: absolute;
@@ -61,6 +69,14 @@
             transform: scale(0);
             transition: transform 0.7s ease;
         }
+
+        @include smartphones {
+            display: none;
+        }
+
+        @include ipads {
+            display: none;
+        }
     }
 
     &_info {
@@ -80,6 +96,19 @@
             gap: 20px;
             transform: translateY(-100px);
             transition: transform 0.5s ease, opacity 0.5s ease;
+
+            @include laptop {
+                flex-direction: row;
+                width: max-content;
+            }
+        }
+
+        @include smartphones {
+            padding-top: 80px;
+        }
+
+        @include ipads {
+            padding-top: 80px;
         }
     }
 

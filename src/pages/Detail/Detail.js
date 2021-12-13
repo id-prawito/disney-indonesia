@@ -394,10 +394,13 @@ const DetailScreen = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="container_movie" style={{ gap: 30 }}>
+                    <div className="container_movie">
                         {category === "movie" ? null : (
                             <div className="card_list_movie">
-                                <div className="coba_episode">
+                                <div
+                                    className="coba_episode"
+                                    style={{ marginBottom: "20px" }}
+                                >
                                     <h3>TV Season and Episode</h3>
                                     <Episode
                                         id={item.id}
@@ -408,7 +411,10 @@ const DetailScreen = () => {
                                 </div>
                             </div>
                         )}
-                        <div className="video_grid">
+                        <div
+                            className="video_grid"
+                            style={{ marginBottom: "20px" }}
+                        >
                             <VideoList id={item.id} />
                         </div>
                         <div className="card_list_movie">

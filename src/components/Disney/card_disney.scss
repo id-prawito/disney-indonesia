@@ -6,6 +6,25 @@
     gap: 20px;
     width: 100%;
 
+    @include smartphones {
+        grid-template-columns: repeat(2, auto);
+        gap: 10px;
+    }
+
+    @include ipads {
+        grid-template-columns: repeat(3, auto);
+        gap: 10px;
+    }
+
+    @include laptop {
+        grid-template-columns: repeat(3, auto);
+        gap: 10px;
+    }
+
+    @include laptop_large {
+        gap: 10px;
+    }
+
     &_item {
         padding-top: 56.25%;
         max-width: 100%;

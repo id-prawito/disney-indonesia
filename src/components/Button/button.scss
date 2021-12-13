@@ -18,6 +18,16 @@
         padding: 10px 12px;
         font-size: 10px;
     }
+
+    @include ipads {
+        padding: 12px 14px;
+        font-size: 12px;
+    }
+
+    @include laptop {
+        padding: 14px 16px;
+        font-size: 14px;
+    }
 }
 
 
@@ -132,6 +142,10 @@
     &:hover {
         background-color: rgb(199, 199, 199);
         color: #111;
+    }
+
+    @include smartphones {
+        gap: 4px;
     }
 }
 

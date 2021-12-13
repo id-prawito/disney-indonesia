@@ -518,7 +518,40 @@ export const MovieSimilar = (props) => {
 
     return (
         <div className="movie-list">
-            <Swiper grabCursor={true} spaceBetween={20} slidesPerView={6}>
+            <Swiper
+                grabCursor={true}
+                spaceBetween={20}
+                slidesPerView={6}
+                breakpoints={{
+                    // when window width is >= 320px
+                    320: {
+                        slidesPerView: 3,
+                        spaceBetween: 10,
+                    },
+                    // when window width is >= 480px
+                    481: {
+                        slidesPerView: 4,
+                        spaceBetween: 10,
+                    },
+                    680: {
+                        slidesPerView: 5,
+                        spaceBetween: 10,
+                    },
+                    // when window width is >= 640px
+                    769: {
+                        slidesPerView: 6,
+                        spaceBetween: 10,
+                    },
+                    1024: {
+                        slidesPerView: 6,
+                        spaceBetween: 10,
+                    },
+                    1224: {
+                        slidesPerView: 8,
+                        spaceBetween: 20,
+                    },
+                }}
+            >
                 {items.slice(0, 1).map((item, i) => (
                     <SwiperSlide key={i}>
                         {props.category === "movie" ? (
@@ -647,7 +680,40 @@ export const DiscoverMovieTV = (props) => {
                 </Link>
             </div>
             <div className="movie-list">
-                <Swiper grabCursor={true} spaceBetween={20} slidesPerView={8}>
+                <Swiper
+                    grabCursor={true}
+                    spaceBetween={20}
+                    slidesPerView={8}
+                    breakpoints={{
+                        // when window width is >= 320px
+                        320: {
+                            slidesPerView: 3,
+                            spaceBetween: 10,
+                        },
+                        // when window width is >= 480px
+                        481: {
+                            slidesPerView: 4,
+                            spaceBetween: 10,
+                        },
+                        680: {
+                            slidesPerView: 5,
+                            spaceBetween: 10,
+                        },
+                        // when window width is >= 640px
+                        769: {
+                            slidesPerView: 6,
+                            spaceBetween: 10,
+                        },
+                        1024: {
+                            slidesPerView: 6,
+                            spaceBetween: 10,
+                        },
+                        1224: {
+                            slidesPerView: 8,
+                            spaceBetween: 20,
+                        },
+                    }}
+                >
                     {items.slice(0, 1).map((item, i) => (
                         <SwiperSlide key={i}>
                             {props.category === "movie" ? (
@@ -755,7 +821,40 @@ export const DiscoverMovieTVNotWill = (props) => {
                 </Link>
             </div>
             <div className="movie-list">
-                <Swiper grabCursor={true} spaceBetween={20} slidesPerView={8}>
+                <Swiper
+                    grabCursor={true}
+                    spaceBetween={20}
+                    slidesPerView={8}
+                    breakpoints={{
+                        // when window width is >= 320px
+                        320: {
+                            slidesPerView: 3,
+                            spaceBetween: 10,
+                        },
+                        // when window width is >= 480px
+                        481: {
+                            slidesPerView: 4,
+                            spaceBetween: 10,
+                        },
+                        680: {
+                            slidesPerView: 5,
+                            spaceBetween: 10,
+                        },
+                        // when window width is >= 640px
+                        769: {
+                            slidesPerView: 6,
+                            spaceBetween: 10,
+                        },
+                        1024: {
+                            slidesPerView: 6,
+                            spaceBetween: 10,
+                        },
+                        1224: {
+                            slidesPerView: 8,
+                            spaceBetween: 20,
+                        },
+                    }}
+                >
                     {items.slice(0, 1).map((item, i) => (
                         <SwiperSlide key={i}>
                             {props.category === "movie" ? (
