@@ -9,8 +9,8 @@ import Scroll from "../components/Header/Scroll";
 
 function App() {
     return (
-        <GlobalProvider basename="/disney-id">
-            <BrowserRouter>
+        <GlobalProvider>
+            <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <Route
                     render={(props) => (
                         <>
