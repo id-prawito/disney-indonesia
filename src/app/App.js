@@ -10,7 +10,7 @@ import Scroll from "../components/Header/Scroll";
 function App() {
     return (
         <GlobalProvider>
-            <BrowserRouter>
+            <BrowserRouter basename="/disney-id">
                 <Route
                     render={(props) => (
                         <>
