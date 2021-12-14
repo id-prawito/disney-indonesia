@@ -8,7 +8,7 @@ import { ButtonIconLain } from "../Button";
 import { MovieCardSearch, TvCardSearch } from "../MovieCard";
 
 const Search = () => {
-    const [query, setQuery] = useState([]);
+    const [query, setQuery] = useState("");
 
     const [items, setItems] = useState([]);
     const [itemsTv, setItemsTv] = useState([]);
