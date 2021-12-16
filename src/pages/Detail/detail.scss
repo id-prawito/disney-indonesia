@@ -493,6 +493,18 @@
         flex-direction: row;
         max-height: 100%;
         gap: 40px;
+
+        @include smartphones {
+            flex-direction: column;
+        }
+
+        @include ipads {
+            flex-direction: column;
+        }
+
+        @include laptop {
+            flex-direction: column;
+        }
     }
 
     &__detail {
@@ -505,6 +517,22 @@
         overflow: hidden;
         cursor: pointer;
         z-index: 1;
+
+        @include smartphones {
+            display: none;
+        }
+
+        @include ipads {
+            max-width: 250px;
+            justify-content: center;
+            margin: auto;
+        }
+
+        @include laptop {
+            max-width: 250px;
+            justify-content: center;
+            margin: auto;
+        }
 
         img {
             transform: scale(1);
@@ -519,6 +547,18 @@
         width: 540px;
         z-index: 1;
         gap: 20px;
+
+        @include smartphones {
+            width: 100%;
+        }
+
+        @include ipads {
+            width: 100%;
+        }
+
+        @include laptop {
+            width: 100%;
+        }
 
         .btns {
             display: flex;
@@ -538,6 +578,10 @@
             &_nama {
                 font-size: 20px;
                 font-weight: 600;
+
+                @include smartphones {
+                    font-size: 16px;
+                }
             }
 
             .genre_item {
@@ -547,7 +591,51 @@
                 align-items: center;
                 gap: 10px;
 
+                @include smartphones {
+                    grid-template-columns: repeat(1, auto);
+                }
+
+                @include laptop_large {
+                    grid-template-columns: repeat(1, auto);
+                }
+
                 &_item__content {
+                    display: flex;
+                    justify-content: center;
+                    background: rgb(56 57 60 / 90%);
+                    text-transform: uppercase;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: #fff;
+                    height: 100%;
+                    padding: 8px;
+                    gap: 6px;
+
+                    @include smartphones {
+                        height: 100%;
+                    }
+
+                    @include laptop_large {
+                        height: 100%;
+                    }
+
+                    .text_item {
+                        font-size: 12px;
+                        text-transform: capitalize;
+
+                        @include smartphones {
+                            font-size: 10px;
+                        }
+                    }
+
+                    .year {
+                        font-size: 12px;
+                        font-weight: 500;
+                    }
+                }
+
+                &_item__content_gen {
                     display: flex;
                     justify-content: center;
                     background: rgb(56 57 60 / 90%);
@@ -560,15 +648,30 @@
                     padding: 8px;
                     gap: 6px;
 
+                    @include smartphones {
+                        height: 100%;
+                        width: max-content;
+                    }
+
+                    @include laptop_large {
+                        height: 100%;
+                        width: max-content;
+                    }
+
                     .text_item {
                         font-size: 12px;
                         text-transform: capitalize;
+
+                        @include smartphones {
+                            font-size: 10px;
+                            margin: auto;
+                        }
+
+                        @include laptop_large {
+                            margin: auto;
+                        }
                     }
 
-                    .year {
-                        font-size: 12px;
-                        font-weight: 500;
-                    }
                 }
             }
 
@@ -620,6 +723,11 @@
                 -webkit-box-orient: vertical;
                 -webkit-line-clamp: 8;
                 white-space: normal;
+
+                @include smartphones {
+                    font-size: 12px;
+                    line-height: 20px;
+                }
 
             }
 

@@ -258,7 +258,9 @@ const DetailScreen = () => {
                                                     >
                                                         <ButtonIconLain className="outline_icon_link">
                                                             <FaLink
-                                                                color={"#fff"}
+                                                                style={{
+                                                                    margin: "auto",
+                                                                }}
                                                             />
                                                         </ButtonIconLain>
                                                     </a>

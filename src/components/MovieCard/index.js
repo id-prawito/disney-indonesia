@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import tmdbApi, { category } from "../../services/tmdbApi";
 import { GlobalContext } from "../../config/GlobalState";
 import nothing from "../../assets/images/images_not-found.png";
+import loading_image from "../../assets/images/loading_image.png";
 import apiConfig from "../../services/apiConfig";
 import "./movie_card.scss";
 
@@ -51,14 +52,16 @@ const MovieCard = (props) => {
     return (
         <>
             {isLoading ? (
-                <div className="movie-card-skeleton" />
+                <div className="movie-card-skeleton">
+                    <img src={loading_image} alt="loading.." />
+                </div>
             ) : (
                 <div className="card_movie">
                     <div className={`movie-card ${props.className}`}>
                         <Link to={link}>
                             <img
                                 src={bg}
-                                alt="aa"
+                                alt="card_images"
                                 error={error ? 1 : 0}
                                 onError={(e) => {
                                     setError(true);
@@ -166,7 +169,9 @@ export const TvCard = (props) => {
     return (
         <>
             {isLoading ? (
-                <div className="movie-card-skeleton" />
+                <div className="movie-card-skeleton">
+                    <img src={loading_image} alt="loading.." />
+                </div>
             ) : (
                 <div className="card_movie">
                     <div className={`movie-card ${props.className}`}>
@@ -289,7 +294,9 @@ export const MovieCardGrid = (props) => {
     return (
         <>
             {isLoading ? (
-                <div className="movie-card-skeleton" />
+                <div className="movie-card-skeleton_grid">
+                    <img src={loading_image} alt="loading.." />
+                </div>
             ) : (
                 <div className="card_movie">
                     <div
@@ -405,7 +412,9 @@ export const TvCardGrid = (props) => {
     return (
         <>
             {isLoading ? (
-                <div className="movie-card-skeleton" />
+                <div className="movie-card-skeleton_grid">
+                    <img src={loading_image} alt="loading.." />
+                </div>
             ) : (
                 <div className="card_movie">
                     <div
@@ -556,7 +565,9 @@ export const MovieCardSimilar = (props) => {
     return (
         <>
             {isLoading ? (
-                <div className="movie-card-skeleton" />
+                <div className="movie-card-skeleton">
+                    <img src={loading_image} alt="loading.." />
+                </div>
             ) : (
                 <div className="card_movie">
                     <div className={`movie-card ${props.className}`}>
@@ -690,7 +701,9 @@ export const TvCardSimilar = (props) => {
     return (
         <>
             {isLoading ? (
-                <div className="movie-card-skeleton" />
+                <div className="movie-card-skeleton">
+                    <img src={loading_image} alt="loading.." />
+                </div>
             ) : (
                 <div className="card_movie">
                     <div className={`movie-card ${props.className}`}>
@@ -795,7 +808,9 @@ export const MovieCardSearch = (props) => {
     return (
         <>
             {isLoading ? (
-                <div className="movie-card-skeleton" />
+                <div className="movie-card-skeleton">
+                    <img src={loading_image} alt="loading.." />
+                </div>
             ) : (
                 <>
                     <div className="movie-card_search">
@@ -875,7 +890,9 @@ export const TvCardSearch = (props) => {
     return (
         <>
             {isLoading ? (
-                <div className="movie-card-skeleton" />
+                <div className="movie-card-skeleton">
+                    <img src={loading_image} alt="loading.." />
+                </div>
             ) : (
                 <div className="movie-card_search">
                     <div className="movie-card-search">

@@ -19,7 +19,7 @@ const CastDetail = () => {
     const { id } = useParams();
     const [cast, setCast] = useState([]);
     const [detail, setDetail] = useState([]);
-
+    window.scrollTo(0, 0);
     useEffect(() => {
         const getCastDetail = async () => {
             try {
@@ -83,7 +83,7 @@ const CastDetail = () => {
                                                 </div>
                                             ) : null}
                                         </div>
-                                        <div className="genre_item_item__content">
+                                        <div className="genre_item_item__content_gen">
                                             <FaVenusMars fontSize={16} />
                                             <div className="text_item">
                                                 {data.gender === 1
