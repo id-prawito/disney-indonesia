@@ -89,7 +89,8 @@ const DetailScreen = () => {
                 .querySelector(".modal__content > iframe")
                 .setAttribute("src", videSrc);
         } else {
-            modal.querySelector(".modal__content").innerHTML = "No trailer";
+            // modal.querySelector(".modal__content").innerHTML = "No trailer";
+            modal.querySelector(".modal__content");
         }
         modal.classList.toggle("active");
     };

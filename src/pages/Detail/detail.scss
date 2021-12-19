@@ -967,19 +967,31 @@
     .text_video {
         font-size: 18px;
         font-weight: 600;
+        display: -webkit-box;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        width: 420px;
 
         @include smartphones {
             font-size: 14px;
+            width: auto;
         }
 
         @include ipads {
             font-size: 14px;
-            height: 30px;
+            width: auto;
         }
 
         @include laptop {
+            font-size: 14px;
+            width: auto;
+        }
+
+        @include laptop_large {
             font-size: 16px;
-            height: 30px;
+            width: auto;
         }
     }
 
@@ -1001,6 +1013,11 @@
 
         @include laptop {
             grid-template-columns: repeat(2, auto);
+            row-gap: 20px;
+        }
+
+        @include laptop_large {
+            grid-template-columns: repeat(3, auto);
             row-gap: 20px;
         }
     }
@@ -1029,6 +1046,23 @@
         display: grid;
         grid-template-columns: repeat(3, auto);
         gap: 20px;
+        overflow-y: scroll;
+        height: 450px;
+
+        @include smartphones {
+            grid-template-columns: repeat(1, auto);
+            row-gap: 20px;
+        }
+
+        @include ipads {
+            grid-template-columns: repeat(2, auto);
+            row-gap: 20px;
+        }
+
+        @include laptop {
+            grid-template-columns: repeat(2, auto);
+            row-gap: 20px;
+        }
 
         .grid_card {
             border-radius: 5px;
@@ -1082,6 +1116,18 @@
                     -webkit-box-orient: vertical;
                     font-size: 14px;
                     font-weight: 500;
+
+                    @include smartphones {
+                        font-size: 10px;
+                    }
+
+                    @include ipads {
+                        font-size: 10px;
+                    }
+
+                    @include laptop {
+                        font-size: 12px;
+                    }
                 }
 
                 .text_keterangan {
@@ -1093,6 +1139,35 @@
                     font-size: 12px;
                     font-weight: 400;
                     line-height: 14px;
+
+                    @include smartphones {
+                        font-size: 10px;
+                        line-height: 10px;
+                    }
+
+                    @include ipads {
+                        font-size: 10px;
+                        line-height: 10px;
+                    }
+
+                    @include laptop {
+                        font-size: 12px;
+                    }
+                }
+
+                @include smartphones {
+                    gap: 10px;
+                    padding: 14px;
+                }
+
+                @include ipads {
+                    gap: 10px;
+                    padding: 14px;
+                }
+
+                @include laptop {
+                    gap: 10px;
+                    padding: 14px;
                 }
             }
         }

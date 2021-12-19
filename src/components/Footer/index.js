@@ -18,21 +18,46 @@ const Footer = () => {
                         </Link>
                     </div>
                     <div className="footer__content-media">
-                        <Link to="#" className="footer__content-social">
+                        <a
+                            href="https://www.hotstar.com"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="footer__content-social"
+                        >
                             Disney +
-                        </Link>
-                        <Link to="#" className="footer__content-social">
+                        </a>
+                        <a
+                            href="https://www.instagram.com/disneyplushotstar/"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="footer__content-social"
+                        >
                             Instagram
-                        </Link>
-                        <Link to="#" className="footer__content-social">
+                        </a>
+                        <a
+                            target="_blank"
+                            rel="noreferrer"
+                            href="https://twitter.com/DisneyPlusID"
+                            className="footer__content-social"
+                        >
                             Twitter
-                        </Link>
-                        <Link to="#" className="footer__content-social">
+                        </a>
+                        <a
+                            href="https://www.linkedin.com/company/the-walt-disney-company/"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="footer__content-social"
+                        >
                             Linked In
-                        </Link>
-                        <Link to="#" className="footer__content-social">
+                        </a>
+                        <a
+                            target="_blank"
+                            rel="noreferrer"
+                            href="https://www.facebook.com/DisneyPlusHotstarID"
+                            className="footer__content-social"
+                        >
                             Facebook
-                        </Link>
+                        </a>
                     </div>
                     <div className="footer__content-disney">
                         <p>

@@ -4,7 +4,7 @@ import tmdbApi, { category, tvType, movieType } from "../../services/tmdbApi";
 import { FaCalendarDay, FaStar, FaRegClosedCaptioning } from "react-icons/fa";
 import Modal, { ModalContent } from "../../components/Modal";
 import image_not from "../../assets/images/not_found_ava.png";
-import { ButtonIcon } from "../../components/Button";
+import { ButtonIcon, ButtonIconTrailer } from "../../components/Button";
 import apiConfig from "../../services/apiConfig";
 import SwiperCore, { Autoplay } from "swiper";
 import { useHistory } from "react-router";
@@ -288,12 +288,12 @@ const HeroSlideItem = (props) => {
                             >
                                 Watch Now
                             </ButtonIcon>
-                            <ButtonIcon
+                            <ButtonIconTrailer
                                 className="outline_icon"
                                 onClick={setModalActive}
                             >
                                 Watch Trailer
-                            </ButtonIcon>
+                            </ButtonIconTrailer>
                         </div>
                     </div>
                 </div>

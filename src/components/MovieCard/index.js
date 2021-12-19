@@ -817,9 +817,7 @@ export const MovieCardSearch = (props) => {
                         <div className="movie-card-search">
                             <Link to={link}>
                                 {item.poster_path === null ? (
-                                    <div className="gambar_kosong">
-                                        Gambarnya tidak ada
-                                    </div>
+                                    <img src={nothing} alt="not_found" />
                                 ) : (
                                     <img
                                         src={apiConfig.w500Image(
@@ -898,9 +896,7 @@ export const TvCardSearch = (props) => {
                     <div className="movie-card-search">
                         <Link to={link}>
                             {item.poster_path === null ? (
-                                <div className="gambar_kosong">
-                                    Gambarnya tidak ada
-                                </div>
+                                <img src={nothing} alt="not_found" />
                             ) : (
                                 <img
                                     src={apiConfig.w500Image(item.poster_path)}

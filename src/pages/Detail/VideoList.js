@@ -41,6 +41,7 @@ const Video = (props) => {
                 ref={iframeRef}
                 title="video"
                 allowFullScreen
+                type="text/html"
             ></iframe>
         </div>
     );

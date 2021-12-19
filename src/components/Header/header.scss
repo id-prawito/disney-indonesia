@@ -101,22 +101,22 @@
         gap: 16px;
 
         @include smartphones {
-            justify-content: space-between;
+            justify-content: flex-end;
             width: 100%;
         }
 
         @include ipads {
-            justify-content: space-between;
+            justify-content: flex-end;
             width: 100%;
         }
 
         @include laptop {
-            justify-content: space-between;
+            justify-content: flex-end;
             width: 100%;
         }
 
         @include laptop_large {
-            justify-content: space-between;
+            justify-content: flex-end;
             width: 100%;
         }
     }
@@ -148,6 +148,11 @@
         @include smartphones {
             height: 40px;
             width: 40px;
+        }
+
+
+        @media only screen and (min-device-width: 420px) and (max-device-width: 560px) {
+            display: none;
         }
     }
 
@@ -305,8 +310,6 @@
     gap: 2px;
     justify-content: space-between;
 
-
-
     input {
         background-color: transparent;
         font-size: 14px;
@@ -356,7 +359,7 @@
 }
 
 .search_result_not {
-    margin-top: 10px;
+    margin-top: 250px;
     width: 300px;
     height: 200px;
     background-color: #1A1D29;
